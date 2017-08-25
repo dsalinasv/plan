@@ -1,0 +1,28 @@
+inherited frmProfesores: TfrmProfesores
+  Caption = 'Profesores'
+  ExplicitWidth = 749
+  ExplicitHeight = 329
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dbgData: TRzDBGrid
+    DataSource = dmData.dsProfesores
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'NOMBRE'
+        Visible = True
+      end>
+  end
+  inherited navData: TRzDBNavigator
+    DataSource = dmData.dsProfesores
+    Hints.Strings = ()
+    ExplicitTop = 243
+  end
+  inherited RzStatusBar1: TRzStatusBar
+    ExplicitTop = 272
+    ExplicitWidth = 733
+    inherited RzDBStateStatus1: TRzDBStateStatus
+      DataSource = dmData.dsProfesores
+    end
+  end
+end

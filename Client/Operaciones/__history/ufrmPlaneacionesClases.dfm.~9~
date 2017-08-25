@@ -1,0 +1,23 @@
+object frmPlaneacionesClases: TfrmPlaneacionesClases
+  Left = 0
+  Top = 0
+  Caption = 'Planeaci'#243'n de la Unidad'
+  ClientHeight = 466
+  ClientWidth = 762
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poMainFormCenter
+  PixelsPerInch = 96
+  TextHeight = 13
+  object RzDialogButtons1: TRzDialogButtons
+    Left = 0
+    Top = 430
+    Width = 762
+    TabOrder = 0
+  end
+end

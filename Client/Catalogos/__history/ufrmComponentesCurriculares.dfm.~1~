@@ -1,0 +1,12 @@
+inherited frmComponentesCurriculares: TfrmComponentesCurriculares
+  Caption = 'Componentes Curriculares'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dbgData: TRzDBGrid
+    DataSource = Data.dsComponentesCurriculares
+  end
+  inherited navData: TRzDBNavigator
+    DataSource = Data.dsComponentesCurriculares
+    Hints.Strings = ()
+  end
+end

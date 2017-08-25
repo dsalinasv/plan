@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{3D63DF04-7262-4C60-9DE9-11ACC5ACB8CB}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Server\PlaneacionServer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Client\Planeacion.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PlaneacionServer">
+        <MSBuild Projects="Server\PlaneacionServer.dproj"/>
+    </Target>
+    <Target Name="PlaneacionServer:Clean">
+        <MSBuild Projects="Server\PlaneacionServer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PlaneacionServer:Make">
+        <MSBuild Projects="Server\PlaneacionServer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Planeacion">
+        <MSBuild Projects="Client\Planeacion.dproj"/>
+    </Target>
+    <Target Name="Planeacion:Clean">
+        <MSBuild Projects="Client\Planeacion.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Planeacion:Make">
+        <MSBuild Projects="Client\Planeacion.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PlaneacionServer;Planeacion"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PlaneacionServer:Clean;Planeacion:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PlaneacionServer:Make;Planeacion:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

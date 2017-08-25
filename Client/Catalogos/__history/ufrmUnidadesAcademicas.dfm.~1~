@@ -1,0 +1,12 @@
+inherited frmUnidadesAcademicas: TfrmUnidadesAcademicas
+  Caption = 'Unidades Acad'#233'micas'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dbgData: TRzDBGrid
+    DataSource = Data.dsUnidadesAcademicas
+  end
+  inherited navData: TRzDBNavigator
+    DataSource = Data.dsUnidadesAcademicas
+    Hints.Strings = ()
+  end
+end

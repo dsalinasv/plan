@@ -1,0 +1,28 @@
+inherited frmAreasCurriculares: TfrmAreasCurriculares
+  Caption = #193'reas Curriculares'
+  ExplicitWidth = 749
+  ExplicitHeight = 329
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dbgData: TRzDBGrid
+    DataSource = dmData.dsAreasCurriculares
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'NOMBRE'
+        Visible = True
+      end>
+  end
+  inherited navData: TRzDBNavigator
+    DataSource = dmData.dsAreasCurriculares
+    Hints.Strings = ()
+    ExplicitTop = 243
+  end
+  inherited RzStatusBar1: TRzStatusBar
+    ExplicitTop = 272
+    ExplicitWidth = 733
+    inherited RzDBStateStatus1: TRzDBStateStatus
+      DataSource = dmData.dsAreasCurriculares
+    end
+  end
+end

@@ -1,0 +1,29 @@
+unit ufrmPlaneacionesClases;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RzTabs, Vcl.ExtCtrls, RzPanel, RzDlgBtn,
+  Vcl.StdCtrls, RzLabel, Vcl.Mask, RzEdit, RzDBEdit, Data.DB, RzDBNav,
+  Vcl.Grids, Vcl.DBGrids, RzDBGrid, Vcl.DBCtrls;
+
+type
+  TfrmPlaneacionesClases = class(TForm)
+    RzDialogButtons1: TRzDialogButtons;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPlaneacionesClases: TfrmPlaneacionesClases;
+
+implementation
+
+{$R *.dfm}
+
+uses udmData;
+
+end.

@@ -1,0 +1,22 @@
+inherited frmLineasDisciplinares: TfrmLineasDisciplinares
+  Caption = 'L'#237'neas Disciplinares'
+  ExplicitWidth = 434
+  ExplicitHeight = 237
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited dbgData: TRzDBGrid
+    DataSource = Data.dsLineasDisciplinares
+  end
+  inherited navData: TRzDBNavigator
+    DataSource = Data.dsLineasDisciplinares
+    Hints.Strings = ()
+  end
+  inherited RzStatusBar1: TRzStatusBar
+    ExplicitLeft = 0
+    ExplicitTop = 180
+    ExplicitWidth = 418
+    inherited RzDBStateStatus1: TRzDBStateStatus
+      DataSource = Data.dsLineasDisciplinares
+    end
+  end
+end
