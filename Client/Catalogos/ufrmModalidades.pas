@@ -25,4 +25,7 @@ implementation
 
 uses udmData;
 
+initialization
+  RegisterClass(TfrmModalidades);
+
 end.

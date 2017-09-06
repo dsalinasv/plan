@@ -2,8 +2,8 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
   Left = 0
   Top = 0
   Caption = 'Planeaci'#243'n de clase'
-  ClientHeight = 524
-  ClientWidth = 836
+  ClientHeight = 729
+  ClientWidth = 1008
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,41 +16,51 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
   TextHeight = 13
   object RzDialogButtons1: TRzDialogButtons
     Left = 0
-    Top = 488
-    Width = 836
+    Top = 693
+    Width = 1008
     TabOrder = 0
+    ExplicitTop = 488
+    ExplicitWidth = 836
   end
   object RzPanel8: TRzPanel
     Left = 0
     Top = 0
-    Width = 836
-    Height = 488
+    Width = 1008
+    Height = 693
     Align = alClient
     TabOrder = 1
-    object RzPageControl1: TRzPageControl
+    ExplicitWidth = 836
+    ExplicitHeight = 488
+    object pgPlaneacion: TRzPageControl
       Left = 2
       Top = 2
-      Width = 832
-      Height = 484
+      Width = 1004
+      Height = 689
       Hint = ''
-      ActivePage = TabSheet1
+      ActivePage = TabSheet6
       ActivePageDefault = TabSheet1
       Align = alClient
-      TabIndex = 0
+      TabIndex = 1
       TabOrder = 0
+      ExplicitWidth = 832
+      ExplicitHeight = 484
       FixedDimension = 19
       object TabSheet1: TRzTabSheet
         Caption = 'Planeaci'#243'n de clase'
+        ExplicitWidth = 828
+        ExplicitHeight = 461
         DesignSize = (
-          828
-          461)
+          1000
+          666)
         object RzLabel24: TRzLabel
           Left = 16
-          Top = 339
-          Width = 104
+          Top = 544
+          Width = 276
           Height = 13
           Anchors = [akLeft, akRight, akBottom]
           Caption = 'Prop'#243'sito de la sesi'#243'n'
+          ExplicitTop = 339
+          ExplicitWidth = 104
         end
         object RzLabel3: TRzLabel
           Left = 370
@@ -82,8 +92,8 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
         end
         object RzDBMemo7: TRzDBMemo
           Left = 16
-          Top = 358
-          Width = 761
+          Top = 563
+          Width = 933
           Height = 89
           Anchors = [akLeft, akRight, akBottom]
           Color = clBtnFace
@@ -96,12 +106,14 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
+          ExplicitTop = 358
+          ExplicitWidth = 761
         end
-        object RzDBMemo6: TRzDBMemo
+        object dbmContenido: TRzDBMemo
           Left = 16
           Top = 62
-          Width = 761
-          Height = 259
+          Width = 933
+          Height = 464
           Anchors = [akLeft, akTop, akRight, akBottom]
           Color = clBtnFace
           DataField = 'CONTENIDO_TEMATICO'
@@ -113,13 +125,17 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
+          ExplicitWidth = 761
+          ExplicitHeight = 259
         end
         object RzDBDateTimePicker1: TRzDBDateTimePicker
           Left = 405
           Top = 8
           Width = 88
           Height = 21
+          Date = 42983.816897187500000000
           Format = ''
+          Time = 42983.816897187500000000
           ParentColor = True
           TabOrder = 2
           FrameController = dmData.RzFrameController2
@@ -135,7 +151,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           Height = 21
           DataSource = dmData.dsPlaneacionesClases
           DataField = 'HORAS'
-          Alignment = taRightJustify
           CharCase = ecUpperCase
           FrameController = dmData.RzFrameController2
           ParentColor = True
@@ -148,18 +163,100 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           Height = 21
           DataSource = dmData.dsPlaneacionesClases
           DataField = 'SESION'
-          Alignment = taRightJustify
           CharCase = ecUpperCase
           FrameController = dmData.RzFrameController2
           ParentColor = True
           TabOrder = 0
         end
+        object RzButton1: TRzButton
+          Left = 115
+          Top = 37
+          Caption = 'Copiar'
+          TabOrder = 5
+          OnClick = RzButton1Click
+        end
+      end
+      object TabSheet6: TRzTabSheet
+        Caption = 'Competencias'
+        ExplicitLeft = 0
+        ExplicitTop = 0
+        ExplicitWidth = 0
+        ExplicitHeight = 0
+        DesignSize = (
+          1000
+          666)
+        object RzLabel8: TRzLabel
+          Left = 16
+          Top = 11
+          Width = 226
+          Height = 13
+          Caption = 'Genericas (Atributos) / Criterios de aprendizaje'
+        end
+        object RzLabel9: TRzLabel
+          Left = 16
+          Top = 318
+          Width = 182
+          Height = 13
+          Caption = 'Disciplinares / Criterios de aprendizaje'
+        end
+        object dbmGenericas: TRzDBMemo
+          Left = 16
+          Top = 30
+          Width = 961
+          Height = 276
+          Anchors = [akLeft, akTop, akRight]
+          Color = clBtnFace
+          DataField = 'COMPETENCIAS_GENERICAS'
+          DataSource = dmData.dsPlaneacionesClases
+          ParentColor = True
+          TabOrder = 0
+          FocusColor = clInfoBk
+          FrameColor = clBlack
+          FrameSides = [sdLeft, sdBottom]
+          FrameVisible = True
+          FramingPreference = fpCustomFraming
+        end
+        object RzButton5: TRzButton
+          Left = 248
+          Top = 5
+          Caption = 'Copiar'
+          TabOrder = 1
+          OnClick = RzButton5Click
+        end
+        object dbmDisciplinares: TRzDBMemo
+          Left = 16
+          Top = 343
+          Width = 961
+          Height = 285
+          Anchors = [akLeft, akTop, akRight, akBottom]
+          Color = clBtnFace
+          DataField = 'COMPETENCIAS_DISCIPLINARES'
+          DataSource = dmData.dsPlaneacionesClases
+          ParentColor = True
+          TabOrder = 2
+          FocusColor = clInfoBk
+          FrameColor = clBlack
+          FrameSides = [sdLeft, sdBottom]
+          FrameVisible = True
+          FramingPreference = fpCustomFraming
+        end
+        object RzButton6: TRzButton
+          Left = 204
+          Top = 312
+          Caption = 'Copiar'
+          TabOrder = 3
+          OnClick = RzButton6Click
+        end
       end
       object TabSheet2: TRzTabSheet
         Caption = 'Saberes espec'#237'ficos a desarrollar'
+        ExplicitLeft = 2
+        ExplicitTop = 19
+        ExplicitWidth = 828
+        ExplicitHeight = 461
         DesignSize = (
-          828
-          461)
+          1000
+          666)
         object RzLabel25: TRzLabel
           Left = 16
           Top = 17
@@ -181,10 +278,10 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           Height = 13
           Caption = 'Actitudinales/valorales'
         end
-        object RzDBMemo8: TRzDBMemo
+        object dbmConceptuales: TRzDBMemo
           Left = 16
           Top = 30
-          Width = 761
+          Width = 933
           Height = 89
           Anchors = [akLeft, akTop, akRight]
           Color = clBtnFace
@@ -197,11 +294,12 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
+          ExplicitWidth = 761
         end
-        object RzDBMemo1: TRzDBMemo
+        object dbmProcedimentales: TRzDBMemo
           Left = 16
           Top = 150
-          Width = 761
+          Width = 933
           Height = 89
           Anchors = [akLeft, akTop, akRight]
           Color = clBtnFace
@@ -214,11 +312,12 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
+          ExplicitWidth = 761
         end
-        object RzDBMemo2: TRzDBMemo
+        object dbmActitudinales: TRzDBMemo
           Left = 16
           Top = 270
-          Width = 761
+          Width = 933
           Height = 89
           Anchors = [akLeft, akTop, akRight]
           Color = clBtnFace
@@ -231,13 +330,37 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
+          ExplicitWidth = 761
+        end
+        object RzButton2: TRzButton
+          Left = 87
+          Top = 11
+          Caption = 'Copiar'
+          TabOrder = 3
+          OnClick = RzButton2Click
+        end
+        object RzButton3: TRzButton
+          Left = 100
+          Top = 131
+          Caption = 'Copiar'
+          TabOrder = 4
+          OnClick = RzButton3Click
+        end
+        object RzButton4: TRzButton
+          Left = 130
+          Top = 251
+          Caption = 'Copiar'
+          TabOrder = 5
+          OnClick = RzButton4Click
         end
       end
       object TabSheet3: TRzTabSheet
         Caption = 'Desarrollo did'#225'ctico'
+        ExplicitWidth = 828
+        ExplicitHeight = 461
         DesignSize = (
-          828
-          461)
+          1000
+          666)
         object RzLabel5: TRzLabel
           Left = 16
           Top = 257
@@ -262,7 +385,7 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
         object RzDBMemo3: TRzDBMemo
           Left = 16
           Top = 270
-          Width = 761
+          Width = 933
           Height = 89
           Anchors = [akLeft, akTop, akRight]
           Color = clBtnFace
@@ -275,11 +398,12 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
+          ExplicitWidth = 761
         end
         object RzDBMemo4: TRzDBMemo
           Left = 16
           Top = 150
-          Width = 761
+          Width = 933
           Height = 89
           Anchors = [akLeft, akTop, akRight]
           Color = clBtnFace
@@ -292,11 +416,12 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
+          ExplicitWidth = 761
         end
         object RzDBMemo5: TRzDBMemo
           Left = 16
           Top = 30
-          Width = 761
+          Width = 933
           Height = 89
           Anchors = [akLeft, akTop, akRight]
           Color = clBtnFace
@@ -309,15 +434,18 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
+          ExplicitWidth = 761
         end
       end
       object TabSheet4: TRzTabSheet
         Caption = 'Materiales/medios/recursos did'#225'cticos'
+        ExplicitWidth = 828
+        ExplicitHeight = 461
         object RzDBMemo9: TRzDBMemo
           Left = 0
           Top = 0
-          Width = 828
-          Height = 461
+          Width = 1000
+          Height = 666
           Align = alClient
           Color = clBtnFace
           DataField = 'RECURSOS_MATERIALES'
@@ -329,15 +457,20 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
+          ExplicitTop = -1
+          ExplicitWidth = 828
+          ExplicitHeight = 461
         end
       end
       object TabSheet5: TRzTabSheet
         Caption = 'Comentarios/Observaciones'
+        ExplicitWidth = 828
+        ExplicitHeight = 461
         object RzDBMemo10: TRzDBMemo
           Left = 0
           Top = 0
-          Width = 828
-          Height = 461
+          Width = 1000
+          Height = 666
           Align = alClient
           Color = clBtnFace
           DataField = 'OBSERVACIONES_COMENTARIOS'
@@ -349,6 +482,8 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
+          ExplicitWidth = 828
+          ExplicitHeight = 461
         end
       end
     end

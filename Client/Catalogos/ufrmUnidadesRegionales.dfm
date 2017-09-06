@@ -1,20 +1,20 @@
-inherited frmProfesores: TfrmProfesores
-  Caption = 'Profesores'
+inherited frmUnidadesRegionales: TfrmUnidadesRegionales
+  Caption = 'Unidades Regionales'
   PixelsPerInch = 96
   TextHeight = 13
   inherited dbgData: TRzDBGrid
-    DataSource = dmData.dsProfesores
+    DataSource = dmData.dsUnidadesRegionales
     Columns = <
       item
         Expanded = False
         FieldName = 'NOMBRE'
-        Title.Caption = 'Profesores'
+        Title.Caption = 'Unidades Regionales'
         Visible = True
       end>
   end
   inherited RzStatusBar1: TRzStatusBar
     inherited RzDBStateStatus1: TRzDBStateStatus
-      DataSource = dmData.dsProfesores
+      DataSource = dmData.dsUnidadesAcademicas
     end
   end
   inherited RzPanel7: TRzPanel
@@ -22,7 +22,7 @@ inherited frmProfesores: TfrmProfesores
     ExplicitTop = 0
     ExplicitWidth = 733
     inherited RzDBNavigator1: TRzDBNavigator
-      DataSource = dmData.dsProfesores
+      DataSource = dmData.dsUnidadesAcademicas
       Hints.Strings = ()
     end
   end

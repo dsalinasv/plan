@@ -5,7 +5,7 @@
         <FrameworkType>VCL</FrameworkType>
         <MainSource>PlaneacionAdmin.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -122,8 +122,8 @@
         <DCCReference Include="Compartidos\ufrmCatalogoBase.pas">
             <Form>frmCatalogoBase</Form>
         </DCCReference>
-        <DCCReference Include="Catalogos\ufrmUnidadesAcademicas.pas">
-            <Form>frmUnidadesAcademicas</Form>
+        <DCCReference Include="Catalogos\ufrmUnidadesRegionales.pas">
+            <Form>frmUnidadesRegionales</Form>
         </DCCReference>
         <DCCReference Include="Catalogos\ufrmPlanes.pas">
             <Form>frmPlanes</Form>
@@ -134,26 +134,24 @@
         <DCCReference Include="Catalogos\ufrmCiclosEscolares.pas">
             <Form>frmCiclosEscolares</Form>
         </DCCReference>
-        <DCCReference Include="Catalogos\ufrmSecretariosAcademicos.pas">
-            <Form>frmSecretariosAcademicos</Form>
-        </DCCReference>
         <DCCReference Include="Catalogos\ufrmComponentesCurriculares.pas">
             <Form>frmComponentesCurriculares</Form>
         </DCCReference>
         <DCCReference Include="Catalogos\ufrmAreasCurriculares.pas">
             <Form>frmAreasCurriculares</Form>
         </DCCReference>
-        <DCCReference Include="Catalogos\ufrmLineasDisciplinares.pas">
-            <Form>frmLineasDisciplinares</Form>
-        </DCCReference>
-        <DCCReference Include="Catalogos\ufrmProfesores.pas">
-            <Form>frmProfesores</Form>
+        <DCCReference Include="Catalogos\ufrmEmpleados.pas">
+            <Form>frmEmpleados</Form>
         </DCCReference>
         <DCCReference Include="Operaciones\ufrmPlaneacionesClases.pas">
             <Form>frmPlaneacionesClases</Form>
         </DCCReference>
         <DCCReference Include="Catalogos\ufrmInstrumentosEvaluacion.pas">
             <Form>frmInstrumentosEvaluacion</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Compartidos\ufrmSeleccion.pas">
+            <Form>frmSeleccion</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
@@ -182,13 +180,13 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="3">
-                <DeployFile LocalName="Win32\Debug\PlaneacionAdmin.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Release\PlaneacionAdmin.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>PlaneacionAdmin.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="Win32\Release\PlaneacionAdmin.exe" Configuration="Release" Class="ProjectOutput">
+                <DeployFile LocalName="Win32\Debug\PlaneacionAdmin.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>PlaneacionAdmin.exe</RemoteName>
                         <Overwrite>true</Overwrite>

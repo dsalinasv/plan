@@ -8,20 +8,17 @@ uses
   Data.DB, Vcl.ExtCtrls, Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, RzDBGrid, RzPanel,
   RzDBNav, RzStatus, RzDBStat, RzGroupBar, RzSplit, Vcl.StdCtrls, RzDBEdit,
   Vcl.ComCtrls, RzDTP, RzDBDTP, Vcl.Mask, RzEdit, RzDBCmbo, RzLabel, RzTabs,
-  RzCmboBx;
+  RzCmboBx, RzDBLbl;
 
 type
   TfrmMain = class(TForm)
     actAcciones: TActionList;
-    actUnidadesAcademicas: TAction;
+    actUnidadesRegionales: TAction;
     actPlanes: TAction;
     actModalidades: TAction;
     actCiclosEscolares: TAction;
-    actSecretariosAcademicos: TAction;
     actComponentesCurriculares: TAction;
-    actAreasCurriculares: TAction;
-    actLineasDisciplinares: TAction;
-    actProfesores: TAction;
+    actEmpleados: TAction;
     RzStatusBar1: TRzStatusBar;
     RzClockStatus1: TRzClockStatus;
     RzResourceStatus1: TRzResourceStatus;
@@ -30,7 +27,7 @@ type
     RzSizePanel1: TRzSizePanel;
     RzGroupBar1: TRzGroupBar;
     RzGroup1: TRzGroup;
-    RzVersionInfo1: TRzVersionInfo;
+    VersionInfo: TRzVersionInfo;
     RzPanel1: TRzPanel;
     dbgPlaneacionesGenerales: TRzDBGrid;
     RzPageControl1: TRzPageControl;
@@ -56,10 +53,7 @@ type
     RzLabel15: TRzLabel;
     RzLabel9: TRzLabel;
     RzLabel16: TRzLabel;
-    cmbUnidadAcademica: TRzDBLookupComboBox;
-    DBLookupComboBox2: TRzDBLookupComboBox;
     DBLookupComboBox3: TRzDBLookupComboBox;
-    DBLookupComboBox4: TRzDBLookupComboBox;
     RzDBDateTimePicker1: TRzDBDateTimePicker;
     RzDBEdit1: TRzDBEdit;
     RzDBLookupComboBox1: TRzDBLookupComboBox;
@@ -95,7 +89,7 @@ type
     TabSheet5: TRzTabSheet;
     RzPanel7: TRzPanel;
     RzDBNavigator1: TRzDBNavigator;
-    RzDBComboBox1: TRzDBComboBox;
+    cmbSemestre: TRzDBComboBox;
     RzSizePanel3: TRzSizePanel;
     RzLabel18: TRzLabel;
     RzLabel19: TRzLabel;
@@ -105,6 +99,18 @@ type
     RzDBMemo5: TRzDBMemo;
     RzDBComboBox2: TRzDBComboBox;
     RzLabel21: TRzLabel;
+    RzSizePanel4: TRzSizePanel;
+    RzPanel6: TRzPanel;
+    RzDBNavigator5: TRzDBNavigator;
+    RzDBGrid4: TRzDBGrid;
+    actInstrumentosEvaluacion: TAction;
+    RzDBEdit10: TRzDBEdit;
+    RzLabel33: TRzLabel;
+    RzLabel34: TRzLabel;
+    RzDBEdit11: TRzDBEdit;
+    RzDBLabel1: TRzDBLabel;
+    RzDBLabel2: TRzDBLabel;
+    RzDBLabel3: TRzDBLabel;
     RzPageControl2: TRzPageControl;
     RzTabSheet1: TRzTabSheet;
     RzPanel8: TRzPanel;
@@ -112,56 +118,63 @@ type
     RzLabel23: TRzLabel;
     RzLabel24: TRzLabel;
     RzLabel25: TRzLabel;
+    RzLabel31: TRzLabel;
+    RzLabel32: TRzLabel;
+    RzDBLabel4: TRzDBLabel;
     RzDBEdit2: TRzDBEdit;
     RzDBMemo6: TRzDBMemo;
     RzDBMemo7: TRzDBMemo;
     RzDBMemo8: TRzDBMemo;
+    RzDBEdit7: TRzDBEdit;
+    TabSheet6: TRzTabSheet;
     RzTabSheet2: TRzTabSheet;
     DBGrid6: TRzDBGrid;
-    RzPanel9: TRzPanel;
-    RzDBNavigator6: TRzDBNavigator;
+    RzSizePanel5: TRzSizePanel;
+    RzLabel26: TRzLabel;
+    RzLabel27: TRzLabel;
+    RzLabel28: TRzLabel;
+    RzLabel29: TRzLabel;
+    RzLabel30: TRzLabel;
+    RzDBMemo9: TRzDBMemo;
+    RzDBDateTimePicker6: TRzDBDateTimePicker;
+    RzDBEdit5: TRzDBEdit;
+    RzDBEdit8: TRzDBEdit;
+    RzDBLookupComboBox6: TRzDBLookupComboBox;
     RzTabSheet3: TRzTabSheet;
     DBGrid7: TRzDBGrid;
     RzPanel10: TRzPanel;
     RzDBNavigator7: TRzDBNavigator;
-    RzSizePanel4: TRzSizePanel;
-    RzPanel6: TRzPanel;
-    RzDBNavigator5: TRzDBNavigator;
-    RzDBGrid4: TRzDBGrid;
-    RzSizePanel5: TRzSizePanel;
-    RzLabel26: TRzLabel;
-    RzLabel27: TRzLabel;
-    RzDBMemo9: TRzDBMemo;
-    RzDBDateTimePicker6: TRzDBDateTimePicker;
-    RzDBEdit5: TRzDBEdit;
-    RzLabel28: TRzLabel;
-    RzLabel29: TRzLabel;
-    RzLabel30: TRzLabel;
-    RzDBEdit8: TRzDBEdit;
-    actInstrumentosEvaluacion: TAction;
-    RzDBLookupComboBox6: TRzDBLookupComboBox;
-    RzDBEdit7: TRzDBEdit;
-    RzDBEdit9: TRzDBEdit;
-    RzLabel31: TRzLabel;
-    RzLabel32: TRzLabel;
-    RzDBEdit10: TRzDBEdit;
-    RzLabel33: TRzLabel;
-    RzLabel34: TRzLabel;
-    RzDBEdit11: TRzDBEdit;
-    procedure actUnidadesAcademicasExecute(Sender: TObject);
-    procedure actPlanesExecute(Sender: TObject);
-    procedure actModalidadesExecute(Sender: TObject);
-    procedure actCiclosEscolaresExecute(Sender: TObject);
-    procedure actSecretariosAcademicosExecute(Sender: TObject);
-    procedure actComponentesCurricularesExecute(Sender: TObject);
-    procedure actAreasCurricularesExecute(Sender: TObject);
-    procedure actLineasDisciplinaresExecute(Sender: TObject);
-    procedure actProfesoresExecute(Sender: TObject);
+    TabSheet7: TRzTabSheet;
+    TabSheet8: TRzTabSheet;
+    TabSheet9: TRzTabSheet;
+    RzDBMemo10: TRzDBMemo;
+    RzDBMemo11: TRzDBMemo;
+    RzLabel35: TRzLabel;
+    RzLabel36: TRzLabel;
+    RzDBMemo12: TRzDBMemo;
+    RzLabel37: TRzLabel;
+    RzLabel38: TRzLabel;
+    RzDBMemo13: TRzDBMemo;
+    RzDBMemo14: TRzDBMemo;
+    RzDBGrid5: TRzDBGrid;
+    RzDBMemo15: TRzDBMemo;
+    RzDBGrid6: TRzDBGrid;
+    RzDBMemo16: TRzDBMemo;
+    RzPanel11: TRzPanel;
+    RzDBNavigator8: TRzDBNavigator;
+    RzPanel9: TRzPanel;
+    RzDBNavigator6: TRzDBNavigator;
+    RzPanel13: TRzPanel;
+    RzDBNavigator10: TRzDBNavigator;
+    RzLabel39: TRzLabel;
+    RzLabel40: TRzLabel;
+    procedure actExecute(Sender: TObject);
     procedure RzSizePanel1HotSpotClick(Sender: TObject);
     procedure RzSizePanel4HotSpotClick(Sender: TObject);
-    procedure DBGrid7DblClick(Sender: TObject);
     procedure RzDBGrid4DblClick(Sender: TObject);
-    procedure actInstrumentosEvaluacionExecute(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure DBGrid7DblClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -175,118 +188,62 @@ implementation
 
 {$R *.dfm}
 
-uses ufrmUnidadesAcademicas, ufrmPlanes, ufrmAreasCurriculares,
-  ufrmCatalogoBase, ufrmCiclosEscolares, ufrmComponentesCurriculares,
-  ufrmLineasDisciplinares, ufrmModalidades, ufrmSecretariosAcademicos,
-  ufrmProfesores, udmData, ufrmPlaneacionesClases, ufrmInstrumentosEvaluacion;
+uses
+  udmData, ufrmPlaneacionesClases;
 
-procedure TfrmMain.actAreasCurricularesExecute(Sender: TObject);
+procedure TfrmMain.actExecute(Sender: TObject);
+var
+  sForma: String;
+  FormClass: TFormClass;
 begin
-  with TfrmAreasCurriculares.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;
-end;
-
-procedure TfrmMain.actCiclosEscolaresExecute(Sender: TObject);
-begin
-  with TfrmCiclosEscolares.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;
-end;
-
-procedure TfrmMain.actComponentesCurricularesExecute(Sender: TObject);
-begin
-  with TfrmComponentesCurriculares.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;
-end;
-
-procedure TfrmMain.actInstrumentosEvaluacionExecute(Sender: TObject);
-begin
-  with TfrmInstrumentosEvaluacion.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;
-end;
-
-procedure TfrmMain.actLineasDisciplinaresExecute(Sender: TObject);
-begin
-  with TfrmLineasDisciplinares.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;
-end;
-
-procedure TfrmMain.actModalidadesExecute(Sender: TObject);
-begin
-  with TfrmModalidades.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;
-end;
-
-procedure TfrmMain.actPlanesExecute(Sender: TObject);
-begin
-  with TfrmPlanes.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;
-end;
-
-procedure TfrmMain.actProfesoresExecute(Sender: TObject);
-begin
-  with TfrmProfesores.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;
-end;
-
-procedure TfrmMain.actSecretariosAcademicosExecute(Sender: TObject);
-begin
-  with TfrmSecretariosAcademicos.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;
-end;
-
-procedure TfrmMain.actUnidadesAcademicasExecute(Sender: TObject);
-begin
-  with TfrmUnidadesAcademicas.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
-  end;
+  sForma:= StringReplace(TAction(Sender).Name, 'act', 'frm', []);
+  FormClass:= TFormClass(GetClass('T' + sForma));
+  if Assigned(FormClass) then
+    with FormClass.Create(Self) do
+    try
+      ShowModal;
+    finally
+      Free;
+    end;
 end;
 
 procedure TfrmMain.DBGrid7DblClick(Sender: TObject);
 begin
   with TfrmPlaneacionesClases.Create(Self) do
-  try
-    ShowModal;
-  finally
-    Free;
+    try
+      if ShowModal = mrOk then
+        if dmData.cdsPlaneacionesClases.State in dsEditModes then
+          dmData.cdsPlaneacionesClases.Post
+      else
+        dmData.cdsPlaneacionesClases.Cancel;
+    finally
+      Free;
+    end;
+end;
+
+procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  if dmData.cdsPlaneacionesGenerales.State in dsEditModes then
+    dmData.cdsPlaneacionesGenerales.ApplyUpdates(0);
+end;
+
+procedure TfrmMain.FormShow(Sender: TObject);
+var
+  Paridad: Byte;
+begin
+  Paridad:= Length(dmData.cdsCiclosEscolaresNOMBRE.Value);
+  cmbSemestre.Items.Clear;
+  case dmData.cdsCiclosEscolaresNOMBRE.Value[Paridad] of
+    '1': begin
+      cmbSemestre.Add('1');
+      cmbSemestre.Add('3');
+      cmbSemestre.Add('5');
+    end;
+    '2': begin
+      cmbSemestre.Add('2');
+      cmbSemestre.Add('4');
+      cmbSemestre.Add('6');
+    end;
   end;
 end;
 

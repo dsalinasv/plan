@@ -1,14 +1,15 @@
-unit ufrmUnidadesAcademicas;
+unit ufrmEmpleados;
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, ufrmCatalogoBase, Data.DB, Vcl.ExtCtrls,
-  Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, RzPanel, RzDBNav, RzDBGrid;
+  Vcl.DBCtrls, Vcl.Grids, Vcl.DBGrids, RzPanel, RzDBNav, RzDBGrid, RzStatus,
+  RzDBStat;
 
 type
-  TfrmUnidadesAcademicas = class(TfrmCatalogoBase)
+  TfrmEmpleados = class(TfrmCatalogoBase)
   private
     { Private declarations }
   public
@@ -16,12 +17,15 @@ type
   end;
 
 var
-  frmUnidadesAcademicas: TfrmUnidadesAcademicas;
+  frmEmpleados: TfrmEmpleados;
 
 implementation
 
 {$R *.dfm}
 
 uses udmData;
+
+initialization
+  RegisterClass(TfrmEmpleados);
 
 end.

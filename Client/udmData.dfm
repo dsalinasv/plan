@@ -2,7 +2,7 @@ object dmData: TdmData
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 447
-  Width = 1221
+  Width = 1387
   object cntData: TSQLConnection
     ConnectionName = 'DataSnapCONNECTION'
     DriverName = 'DataSnap'
@@ -19,110 +19,309 @@ object dmData: TdmData
       'port=8080'
       'Filters={}'
       'CommunicationProtocol=http')
+    Connected = True
     Left = 48
     Top = 8
   end
-  object cdsUnidadesAcademicas: TClientDataSet
-    Active = True
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspUnidadesAcademicas'
-    RemoteServer = dpcData
-    AfterPost = cdsUnidadesAcademicasAfterPost
-    AfterDelete = cdsUnidadesAcademicasAfterPost
-    OnNewRecord = cdsUnidadesAcademicasNewRecord
-    Left = 48
-    Top = 128
-  end
   object dsUnidadesAcademicas: TDataSource
     DataSet = cdsUnidadesAcademicas
-    Left = 56
-    Top = 136
-  end
-  object cdsPlanes: TClientDataSet
-    Active = True
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspPlanes'
-    RemoteServer = dpcData
-    AfterPost = cdsPlanesAfterPost
-    AfterDelete = cdsPlanesAfterPost
-    OnNewRecord = cdsPlanesNewRecord
-    Left = 152
-    Top = 128
+    Left = 48
+    Top = 200
   end
   object dsPlanes: TDataSource
     DataSet = cdsPlanes
-    Left = 160
-    Top = 136
-  end
-  object cdsModalidades: TClientDataSet
-    Active = True
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspModalidades'
-    RemoteServer = dpcData
-    AfterPost = cdsModalidadesAfterPost
-    AfterDelete = cdsModalidadesAfterPost
-    OnNewRecord = cdsModalidadesNewRecord
-    Left = 232
-    Top = 128
+    Left = 240
+    Top = 200
   end
   object dsModalidades: TDataSource
     DataSet = cdsModalidades
-    Left = 240
-    Top = 136
-  end
-  object cdsCiclosEscolares: TClientDataSet
-    Active = True
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspCiclosEscolares'
-    RemoteServer = dpcData
-    AfterPost = cdsCiclosEscolaresAfterPost
-    AfterDelete = cdsCiclosEscolaresAfterPost
-    OnNewRecord = cdsCiclosEscolaresNewRecord
-    Left = 336
-    Top = 128
+    Left = 152
+    Top = 104
   end
   object dsCiclosEscolares: TDataSource
     DataSet = cdsCiclosEscolares
-    Left = 344
-    Top = 136
-  end
-  object cdsSecretariosAcademicos: TClientDataSet
-    Active = True
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspSecretariosAcademicos'
-    RemoteServer = dpcData
-    AfterPost = cdsSecretariosAcademicosAfterPost
-    AfterDelete = cdsSecretariosAcademicosAfterPost
-    OnNewRecord = cdsSecretariosAcademicosNewRecord
-    Left = 464
-    Top = 128
+    Left = 160
+    Top = 200
   end
   object dsSecretariosAcademicos: TDataSource
     DataSet = cdsSecretariosAcademicos
-    Left = 472
-    Top = 136
-  end
-  object cdsComponentesCurriculares: TClientDataSet
-    Active = True
-    Aggregates = <>
-    Params = <>
-    ProviderName = 'dspComponentesCurriculares'
-    RemoteServer = dpcData
-    AfterPost = cdsComponentesCurricularesAfterPost
-    AfterDelete = cdsComponentesCurricularesAfterPost
-    OnNewRecord = cdsComponentesCurricularesNewRecord
-    Left = 616
-    Top = 128
+    Left = 264
+    Top = 104
   end
   object dsComponentesCurriculares: TDataSource
     DataSet = cdsComponentesCurriculares
-    Left = 624
-    Top = 136
+    Left = 408
+    Top = 104
+  end
+  object dsAreasCurriculares: TDataSource
+    DataSet = cdsAreasCurriculares
+    Left = 544
+    Top = 104
+  end
+  object dsLineasDisciplinares: TDataSource
+    DataSet = cdsLineasDisciplinares
+    Left = 664
+    Top = 104
+  end
+  object dsEmpleados: TDataSource
+    DataSet = cdsEmpleados
+    Left = 824
+    Top = 104
+  end
+  object dsPlaneacionesGenerales: TDataSource
+    DataSet = cdsPlaneacionesGenerales
+    Left = 336
+    Top = 200
+  end
+  object dsProfesoresParticipantes: TDataSource
+    DataSet = cdsProfesoresParticipantes
+    Left = 472
+    Top = 200
+  end
+  object dsReuniones: TDataSource
+    DataSet = cdsReuniones
+    Left = 584
+    Top = 200
+  end
+  object dsAcuerdos: TDataSource
+    DataSet = cdsAcuerdos
+    Left = 664
+    Top = 200
+  end
+  object dsPlaneacionesUnidades: TDataSource
+    DataSet = cdsPlaneacionesUnidades
+    Left = 768
+    Top = 200
+  end
+  object dsEvaluaciones: TDataSource
+    DataSet = cdsEvaluaciones
+    Left = 1136
+    Top = 200
+  end
+  object dsPlaneacionesClases: TDataSource
+    DataSet = cdsPlaneacionesClases
+    Left = 1240
+    Top = 200
+  end
+  object cdsPlaneacionesClases: TClientDataSet
+    Aggregates = <>
+    DataSetField = cdsPlaneacionesUnidadesdtsPlaneacionesClases
+    Params = <>
+    OnNewRecord = cdsPlaneacionesClasesNewRecord
+    Left = 1240
+    Top = 152
+    object cdsPlaneacionesClasesID_PLANEACION_CLASE: TStringField
+      FieldName = 'ID_PLANEACION_CLASE'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsPlaneacionesClasesID_PLANEACION_UNIDAD: TStringField
+      FieldName = 'ID_PLANEACION_UNIDAD'
+      Size = 38
+    end
+    object cdsPlaneacionesClasesSESION: TSmallintField
+      FieldName = 'SESION'
+    end
+    object cdsPlaneacionesClasesHORAS: TSmallintField
+      FieldName = 'HORAS'
+    end
+    object cdsPlaneacionesClasesFECHA: TDateField
+      FieldName = 'FECHA'
+    end
+    object cdsPlaneacionesClasesCONTENIDO_TEMATICO: TMemoField
+      FieldName = 'CONTENIDO_TEMATICO'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesPROPOSITO_SESION: TMemoField
+      FieldName = 'PROPOSITO_SESION'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesCOMPETENCIAS_GENERICAS: TMemoField
+      FieldName = 'COMPETENCIAS_GENERICAS'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesCOMPETENCIAS_DISCIPLINARES: TMemoField
+      FieldName = 'COMPETENCIAS_DISCIPLINARES'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesSABERES_CONCEPTUALES: TMemoField
+      FieldName = 'SABERES_CONCEPTUALES'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesSABERES_PROCEDIMENTALES: TMemoField
+      FieldName = 'SABERES_PROCEDIMENTALES'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesSABERES_ACTITUDINALES: TMemoField
+      FieldName = 'SABERES_ACTITUDINALES'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesACTIVIDAD_APERTURA: TMemoField
+      FieldName = 'ACTIVIDAD_APERTURA'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesACTIVIDAD_DESARROLLO: TMemoField
+      FieldName = 'ACTIVIDAD_DESARROLLO'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesACTIVIDAD_CIERRE: TMemoField
+      FieldName = 'ACTIVIDAD_CIERRE'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesRECURSOS_MATERIALES: TMemoField
+      FieldName = 'RECURSOS_MATERIALES'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesClasesOBSERVACIONES_COMENTARIOS: TMemoField
+      FieldName = 'OBSERVACIONES_COMENTARIOS'
+      BlobType = ftMemo
+      Size = 1
+    end
+  end
+  object RzFrameController1: TRzFrameController
+    Left = 264
+    Top = 8
+  end
+  object RzFrameController2: TRzFrameController
+    FocusColor = clInfoBk
+    FrameColor = clBlack
+    FrameHotTrack = True
+    FrameSides = [sdBottom]
+    FrameVisible = True
+    FramingPreference = fpCustomFraming
+    ParentColor = True
+    Left = 368
+    Top = 8
+  end
+  object dpcData: TDSProviderConnection
+    ServerClassName = 'TsrvMethods'
+    Connected = True
+    SQLConnection = cntData
+    Left = 152
+    Top = 8
+  end
+  object dsInstrumentosEvaluacion: TDataSource
+    DataSet = cdsInstrumentosEvaluacion
+    Left = 1016
+    Top = 104
+  end
+  object cdsInstrumentosEvaluacion: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspInstrumentosEvaluacion'
+    RemoteServer = dpcData
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsInstrumentosEvaluacionNewRecord
+    Left = 1016
+    Top = 56
+    object cdsInstrumentosEvaluacionID: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsInstrumentosEvaluacionNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 50
+    end
+  end
+  object dsUnidadesRegionales: TDataSource
+    DataSet = cdsUnidadesRegionales
+    Left = 48
+    Top = 104
+  end
+  object cdsUnidadesRegionales: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUnidadesRegionales'
+    RemoteServer = dpcData
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsUnidadesAcademicasNewRecord
+    Left = 48
+    Top = 56
+    object cdsUnidadesRegionalesID_UNIDAD_REGIONAL: TStringField
+      FieldName = 'ID_UNIDAD_REGIONAL'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsUnidadesRegionalesNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 10
+    end
+    object cdsUnidadesRegionalesdtsUnidadesAcademicas: TDataSetField
+      FieldName = 'dtsUnidadesAcademicas'
+    end
+  end
+  object cdsEmpleados: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspEmpleados'
+    RemoteServer = dpcData
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsEmpleadosNewRecord
+    Left = 824
+    Top = 56
+    object cdsEmpleadosID: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsEmpleadosNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 100
+    end
+    object cdsEmpleadosID_PERFIL: TStringField
+      FieldName = 'ID_PERFIL'
+      Size = 38
+    end
+    object cdsEmpleadosPERFIL: TStringField
+      FieldKind = fkLookup
+      FieldName = 'PERFIL'
+      LookupDataSet = cdsPerfiles
+      LookupKeyFields = 'ID'
+      LookupResultField = 'NOMBRE'
+      KeyFields = 'ID_PERFIL'
+      Lookup = True
+    end
+  end
+  object cdsLineasDisciplinares: TClientDataSet
+    Active = True
+    Aggregates = <>
+    DataSetField = cdsAreasCurricularesdtsLineasDisciplinares
+    Params = <>
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsLineasDisciplinaresNewRecord
+    Left = 664
+    Top = 56
+    object cdsLineasDisciplinaresID: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsLineasDisciplinaresNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 30
+    end
   end
   object cdsAreasCurriculares: TClientDataSet
     Active = True
@@ -130,69 +329,193 @@ object dmData: TdmData
     Params = <>
     ProviderName = 'dspAreasCurriculares'
     RemoteServer = dpcData
-    AfterPost = cdsAreasCurricularesAfterPost
-    AfterDelete = cdsAreasCurricularesAfterPost
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
     OnNewRecord = cdsAreasCurricularesNewRecord
-    Left = 760
-    Top = 128
+    Left = 544
+    Top = 56
+    object cdsAreasCurricularesID_AREA_CURRICULAR: TStringField
+      FieldName = 'ID_AREA_CURRICULAR'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsAreasCurricularesNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 30
+    end
+    object cdsAreasCurricularesdtsLineasDisciplinares: TDataSetField
+      FieldName = 'dtsLineasDisciplinares'
+    end
   end
-  object dsAreasCurriculares: TDataSource
-    DataSet = cdsAreasCurriculares
-    Left = 768
-    Top = 136
-  end
-  object cdsLineasDisciplinares: TClientDataSet
+  object cdsComponentesCurriculares: TClientDataSet
     Active = True
     Aggregates = <>
     Params = <>
-    ProviderName = 'dspLineasDisciplinares'
+    ProviderName = 'dspComponentesCurriculares'
     RemoteServer = dpcData
-    AfterPost = cdsLineasDisciplinaresAfterPost
-    AfterDelete = cdsLineasDisciplinaresAfterPost
-    OnNewRecord = cdsLineasDisciplinaresNewRecord
-    Left = 888
-    Top = 128
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsComponentesCurricularesNewRecord
+    Left = 408
+    Top = 56
+    object cdsComponentesCurricularesID: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsComponentesCurricularesNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 30
+    end
   end
-  object dsLineasDisciplinares: TDataSource
-    DataSet = cdsLineasDisciplinares
-    Left = 896
-    Top = 136
-  end
-  object cdsProfesores: TClientDataSet
+  object cdsSecretariosAcademicos: TClientDataSet
     Active = True
     Aggregates = <>
     Params = <>
-    ProviderName = 'dspProfesores'
+    ProviderName = 'dspSecretariosAcademicos'
     RemoteServer = dpcData
-    AfterPost = cdsProfesoresAfterPost
-    AfterDelete = cdsProfesoresAfterPost
-    OnNewRecord = cdsProfesoresNewRecord
-    Left = 1000
-    Top = 128
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsSecretariosAcademicosNewRecord
+    Left = 264
+    Top = 56
+    object cdsSecretariosAcademicosID: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsSecretariosAcademicosNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 100
+    end
   end
-  object dsProfesores: TDataSource
-    DataSet = cdsProfesores
-    Left = 1008
-    Top = 136
+  object cdsCiclosEscolares: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <
+      item
+        DataType = ftString
+        Name = 'ID_UNIDAD_REGIONAL'
+        ParamType = ptInput
+      end
+      item
+        DataType = ftSmallint
+        Name = 'ACTIVO'
+        ParamType = ptInput
+      end>
+    ProviderName = 'dspCiclosEscolares'
+    RemoteServer = dpcData
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsCiclosEscolaresNewRecord
+    Left = 160
+    Top = 152
+    object cdsCiclosEscolaresID_CICLO_ESCOLAR: TStringField
+      FieldName = 'ID_CICLO_ESCOLAR'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsCiclosEscolaresNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 10
+    end
+    object cdsCiclosEscolaresACTIVO: TSmallintField
+      FieldName = 'ACTIVO'
+    end
+    object cdsCiclosEscolaresID_UNIDAD_REGIONAL: TStringField
+      FieldName = 'ID_UNIDAD_REGIONAL'
+      Required = True
+      Size = 38
+    end
+    object cdsCiclosEscolaresdtsPlanes: TDataSetField
+      FieldName = 'dtsPlanes'
+    end
   end
-  object dtsPlaneacionesGenerales: TSQLDataSet
-    CommandText = 'select * from PLANEACIONES_GENERALES'
-    MaxBlobSize = -1
+  object cdsModalidades: TClientDataSet
+    Active = True
+    Aggregates = <>
     Params = <>
-    SQLConnection = cntData
+    ProviderName = 'dspModalidades'
+    RemoteServer = dpcData
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsModalidadesNewRecord
+    Left = 152
+    Top = 56
+    object cdsModalidadesID: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsModalidadesNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 30
+    end
+  end
+  object cdsPlanes: TClientDataSet
+    Active = True
+    Aggregates = <>
+    DataSetField = cdsCiclosEscolaresdtsPlanes
+    Params = <>
+    OnNewRecord = cdsPlanesNewRecord
+    Left = 240
+    Top = 152
+    object cdsPlanesID_PLAN: TStringField
+      FieldName = 'ID_PLAN'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsPlanesNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 10
+    end
+    object cdsPlanesID_CICLO_ESCOLAR: TStringField
+      FieldName = 'ID_CICLO_ESCOLAR'
+      Required = True
+      Size = 38
+    end
+    object cdsPlanesdtsPlaneacionesGenerales: TDataSetField
+      FieldName = 'dtsPlaneacionesGenerales'
+    end
+  end
+  object cdsUnidadesAcademicas: TClientDataSet
+    Aggregates = <>
+    DataSetField = cdsUnidadesRegionalesdtsUnidadesAcademicas
+    Params = <>
+    OnNewRecord = cdsUnidadesAcademicasNewRecord
     Left = 48
-    Top = 192
+    Top = 152
+    object cdsUnidadesAcademicasID: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsUnidadesAcademicasNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 100
+    end
+    object cdsUnidadesAcademicasID_UNIDAD_REGIONAL: TStringField
+      FieldName = 'ID_UNIDAD_REGIONAL'
+      Required = True
+      Size = 38
+    end
   end
   object cdsPlaneacionesGenerales: TClientDataSet
     Active = True
     Aggregates = <>
+    DataSetField = cdsPlanesdtsPlaneacionesGenerales
     Params = <>
-    ProviderName = 'dspPlaneacionesGenerales'
-    RemoteServer = dpcData
-    AfterPost = cdsPlaneacionesGeneralesAfterPost
+    AfterInsert = cdsPlaneacionesGeneralesAfterInsert
     OnNewRecord = cdsPlaneacionesGeneralesNewRecord
-    Left = 48
-    Top = 256
+    Left = 336
+    Top = 152
     object cdsPlaneacionesGeneralesID_PLANEACION_GENERAL: TStringField
       FieldName = 'ID_PLANEACION_GENERAL'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -226,21 +549,19 @@ object dmData: TdmData
     object cdsPlaneacionesGeneralesHORAS_SEMANA: TSmallintField
       FieldName = 'HORAS_SEMANA'
     end
-    object cdsPlaneacionesGeneralesPROPOSITO_GENERAL: TStringField
+    object cdsPlaneacionesGeneralesPROPOSITO_GENERAL: TMemoField
       FieldName = 'PROPOSITO_GENERAL'
-      Size = 250
+      BlobType = ftMemo
+      Size = 1
     end
     object cdsPlaneacionesGeneralesEVIDENCIA_INTEGRADORA: TStringField
       FieldName = 'EVIDENCIA_INTEGRADORA'
       Size = 50
     end
-    object cdsPlaneacionesGeneralesORIENTACIONES_GENERALES: TStringField
+    object cdsPlaneacionesGeneralesORIENTACIONES_GENERALES: TMemoField
       FieldName = 'ORIENTACIONES_GENERALES'
-      Size = 50
-    end
-    object cdsPlaneacionesGeneralesID_UNIDAD_ACADEMICA: TStringField
-      FieldName = 'ID_UNIDAD_ACADEMICA'
-      Size = 38
+      BlobType = ftMemo
+      Size = 1
     end
     object cdsPlaneacionesGeneralesID_PLAN: TStringField
       FieldName = 'ID_PLAN'
@@ -248,10 +569,6 @@ object dmData: TdmData
     end
     object cdsPlaneacionesGeneralesID_MODALIDAD: TStringField
       FieldName = 'ID_MODALIDAD'
-      Size = 38
-    end
-    object cdsPlaneacionesGeneralesID_CICLO_ESCOLAR: TStringField
-      FieldName = 'ID_CICLO_ESCOLAR'
       Size = 38
     end
     object cdsPlaneacionesGeneralesID_PROFESOR_COORDINADOR: TStringField
@@ -274,26 +591,6 @@ object dmData: TdmData
       FieldName = 'ID_LINEA_DISCIPLINAR'
       Size = 38
     end
-    object cdsPlaneacionesGeneralesUNIDAD_ACADEMICA: TStringField
-      FieldKind = fkLookup
-      FieldName = 'UNIDAD_ACADEMICA'
-      LookupDataSet = cdsUnidadesAcademicas
-      LookupKeyFields = 'ID'
-      LookupResultField = 'NOMBRE'
-      KeyFields = 'ID_UNIDAD_ACADEMICA'
-      Size = 50
-      Lookup = True
-    end
-    object cdsPlaneacionesGeneralesPLAN: TStringField
-      FieldKind = fkLookup
-      FieldName = 'PLAN'
-      LookupDataSet = cdsPlanes
-      LookupKeyFields = 'ID'
-      LookupResultField = 'NOMBRE'
-      KeyFields = 'ID_PLAN'
-      Size = 50
-      Lookup = True
-    end
     object cdsPlaneacionesGeneralesMODALIDAD: TStringField
       FieldKind = fkLookup
       FieldName = 'MODALIDAD'
@@ -304,20 +601,10 @@ object dmData: TdmData
       Size = 50
       Lookup = True
     end
-    object cdsPlaneacionesGeneralesCICLO_ESCOLAR: TStringField
-      FieldKind = fkLookup
-      FieldName = 'CICLO_ESCOLAR'
-      LookupDataSet = cdsCiclosEscolares
-      LookupKeyFields = 'ID'
-      LookupResultField = 'NOMBRE'
-      KeyFields = 'ID_CICLO_ESCOLAR'
-      Size = 50
-      Lookup = True
-    end
     object cdsPlaneacionesGeneralesPROFESOR_COORDINADOR: TStringField
       FieldKind = fkLookup
       FieldName = 'PROFESOR_COORDINADOR'
-      LookupDataSet = cdsProfesores
+      LookupDataSet = cdsEmpleados
       LookupKeyFields = 'ID'
       LookupResultField = 'NOMBRE'
       KeyFields = 'ID_PROFESOR_COORDINADOR'
@@ -348,7 +635,7 @@ object dmData: TdmData
       FieldKind = fkLookup
       FieldName = 'AREA_CURRICULAR'
       LookupDataSet = cdsAreasCurriculares
-      LookupKeyFields = 'ID'
+      LookupKeyFields = 'ID_AREA_CURRICULAR'
       LookupResultField = 'NOMBRE'
       KeyFields = 'ID_AREA_CURRICULAR'
       Size = 50
@@ -364,54 +651,27 @@ object dmData: TdmData
       Size = 50
       Lookup = True
     end
-    object cdsPlaneacionesGeneralesdtsProfesoresParticipantes: TDataSetField
-      FieldName = 'dtsProfesoresParticipantes'
+    object cdsPlaneacionesGeneralesdtsReuniones: TDataSetField
+      FieldName = 'dtsReuniones'
     end
     object cdsPlaneacionesGeneralesdtsAcuerdos: TDataSetField
       FieldName = 'dtsAcuerdos'
     end
-    object cdsPlaneacionesGeneralesdtsReuniones: TDataSetField
-      FieldName = 'dtsReuniones'
+    object cdsPlaneacionesGeneralesdtsProfesoresParticipantes: TDataSetField
+      FieldName = 'dtsProfesoresParticipantes'
     end
     object cdsPlaneacionesGeneralesdtsPlaneacionesUnidades: TDataSetField
       FieldName = 'dtsPlaneacionesUnidades'
     end
-  end
-  object dspPlaneacionesGenerales: TDataSetProvider
-    DataSet = dtsPlaneacionesGenerales
-    Left = 56
-    Top = 200
-  end
-  object dsPlaneacionesGenerales: TDataSource
-    DataSet = cdsPlaneacionesGenerales
-    Left = 56
-    Top = 264
-  end
-  object dtsProfesoresParticipantes: TSQLDataSet
-    CommandText = 
-      'select * from PROFESORES_PARTICIPANTES'#13#10'where ID_PLANEACION_GENE' +
-      'RAL = :ID_PLANEACION_GENERAL'
-    DataSource = dsPlaneacionezGeneralez
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_PLANEACION_GENERAL'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
-    Left = 208
-    Top = 200
   end
   object cdsProfesoresParticipantes: TClientDataSet
     Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesGeneralesdtsProfesoresParticipantes
     Params = <>
-    RemoteServer = dpcData
     OnNewRecord = cdsProfesoresParticipantesNewRecord
-    Left = 200
-    Top = 256
+    Left = 472
+    Top = 152
     object cdsProfesoresParticipantesID: TStringField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -441,53 +701,89 @@ object dmData: TdmData
       Lookup = True
     end
   end
-  object dsPlaneacionezGeneralez: TDataSource
-    DataSet = dtsPlaneacionesGenerales
-    Left = 200
-    Top = 192
-  end
-  object dsProfesoresParticipantes: TDataSource
-    DataSet = cdsProfesoresParticipantes
-    Left = 208
-    Top = 264
-  end
   object cdsReuniones: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesGeneralesdtsReuniones
     Params = <>
-    RemoteServer = dpcData
+    AfterInsert = cdsReunionesAfterInsert
     OnNewRecord = cdsReunionesNewRecord
-    Left = 320
-    Top = 312
-  end
-  object dsReuniones: TDataSource
-    DataSet = cdsReuniones
-    Left = 328
-    Top = 320
+    Left = 584
+    Top = 152
+    object cdsReunionesID: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsReunionesID_PLANEACION_GENERAL: TStringField
+      FieldName = 'ID_PLANEACION_GENERAL'
+      Required = True
+      Size = 38
+    end
+    object cdsReunionesNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 30
+    end
+    object cdsReunionesPROPOSITO: TMemoField
+      FieldName = 'PROPOSITO'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsReunionesFECHA: TDateField
+      FieldName = 'FECHA'
+    end
   end
   object cdsAcuerdos: TClientDataSet
     Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesGeneralesdtsAcuerdos
     Params = <>
-    RemoteServer = dpcData
+    AfterInsert = cdsAcuerdosAfterInsert
     OnNewRecord = cdsAcuerdosNewRecord
-    Left = 400
-    Top = 312
-  end
-  object dsAcuerdos: TDataSource
-    DataSet = cdsAcuerdos
-    Left = 408
-    Top = 320
+    Left = 664
+    Top = 152
+    object cdsAcuerdosID: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsAcuerdosID_PLANEACION_GENERAL: TStringField
+      FieldName = 'ID_PLANEACION_GENERAL'
+      Required = True
+      Size = 38
+    end
+    object cdsAcuerdosNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 30
+    end
+    object cdsAcuerdosACUERDO: TMemoField
+      FieldName = 'ACUERDO'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsAcuerdosPARA: TStringField
+      FieldName = 'PARA'
+      Size = 100
+    end
+    object cdsAcuerdosSEGUIMIENTO: TMemoField
+      FieldName = 'SEGUIMIENTO'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsAcuerdosFECHA: TDateField
+      FieldName = 'FECHA'
+    end
   end
   object cdsPlaneacionesUnidades: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesGeneralesdtsPlaneacionesUnidades
     Params = <>
-    RemoteServer = dpcData
     OnNewRecord = cdsPlaneacionesUnidadesNewRecord
-    Left = 512
-    Top = 312
+    Left = 768
+    Top = 152
     object cdsPlaneacionesUnidadesID_PLANEACION_UNIDAD: TStringField
       FieldName = 'ID_PLANEACION_UNIDAD'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -500,25 +796,56 @@ object dmData: TdmData
     end
     object cdsPlaneacionesUnidadesNOMBRE: TStringField
       FieldName = 'NOMBRE'
-      Size = 250
-    end
-    object cdsPlaneacionesUnidadesPROPOSITO_UNIDAD: TStringField
-      FieldName = 'PROPOSITO_UNIDAD'
-      Size = 250
-    end
-    object cdsPlaneacionesUnidadesRECURSOS: TStringField
-      FieldName = 'RECURSOS'
-      Size = 250
-    end
-    object cdsPlaneacionesUnidadesESTRATEGIAS_RETROALIMENTACION: TStringField
-      FieldName = 'ESTRATEGIAS_RETROALIMENTACION'
       Size = 100
     end
-    object cdsPlaneacionesUnidadesHORAS_PROGRAMADAS: TIntegerField
-      FieldName = 'HORAS_PROGRAMADAS'
+    object cdsPlaneacionesUnidadesPROPOSITO_UNIDAD: TMemoField
+      FieldName = 'PROPOSITO_UNIDAD'
+      BlobType = ftMemo
+      Size = 1
     end
-    object cdsPlaneacionesUnidadesHORAS_PLANEADAS: TIntegerField
-      FieldName = 'HORAS_PLANEADAS'
+    object cdsPlaneacionesUnidadesRECURSOS: TMemoField
+      FieldName = 'RECURSOS'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesUnidadesESTRATEGIAS_RETROALIMENTACION: TMemoField
+      FieldName = 'ESTRATEGIAS_RETROALIMENTACION'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesUnidadesHORAS: TSmallintField
+      FieldName = 'HORAS'
+    end
+    object cdsPlaneacionesUnidadesESTRATEGIAS_DIDACTICAS: TMemoField
+      FieldName = 'ESTRATEGIAS_DIDACTICAS'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesUnidadesSABERES_CONCEPTUALES: TMemoField
+      FieldName = 'SABERES_CONCEPTUALES'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesUnidadesSABERES_PROCEDIMENTALES: TMemoField
+      FieldName = 'SABERES_PROCEDIMENTALES'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesUnidadesSABERES_ACTITUDINALES: TMemoField
+      FieldName = 'SABERES_ACTITUDINALES'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesUnidadesCONTENIDO_TEMATICO: TMemoField
+      FieldName = 'CONTENIDO_TEMATICO'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsPlaneacionesUnidadesdtsUnidadesCompetencias: TDataSetField
+      FieldName = 'dtsUnidadesCompetencias'
+    end
+    object cdsPlaneacionesUnidadesdtsUnidadesAtributos: TDataSetField
+      FieldName = 'dtsUnidadesAtributos'
     end
     object cdsPlaneacionesUnidadesdtsEvaluaciones: TDataSetField
       FieldName = 'dtsEvaluaciones'
@@ -527,165 +854,253 @@ object dmData: TdmData
       FieldName = 'dtsPlaneacionesClases'
     end
   end
-  object dsPlaneacionesUnidades: TDataSource
-    DataSet = cdsPlaneacionesUnidades
-    Left = 520
-    Top = 320
-  end
   object cdsEvaluaciones: TClientDataSet
+    Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesUnidadesdtsEvaluaciones
     Params = <>
-    RemoteServer = dpcData
     OnNewRecord = cdsEvaluacionesNewRecord
-    Left = 632
-    Top = 312
-  end
-  object dsEvaluaciones: TDataSource
-    DataSet = cdsEvaluaciones
-    Left = 640
-    Top = 320
-  end
-  object dsPlaneacionesClases: TDataSource
-    DataSet = cdsPlaneacionesClases
-    Left = 752
-    Top = 320
-  end
-  object cdsPlaneacionesClases: TClientDataSet
-    Aggregates = <>
-    DataSetField = cdsPlaneacionesUnidadesdtsPlaneacionesClases
-    Params = <>
-    RemoteServer = dpcData
-    OnNewRecord = cdsPlaneacionesClasesNewRecord
-    Left = 744
-    Top = 312
-    object cdsPlaneacionesClasesID_PLANEACION_CLASE: TStringField
-      FieldName = 'ID_PLANEACION_CLASE'
+    Left = 1136
+    Top = 152
+    object cdsEvaluacionesID: TStringField
+      FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       Required = True
       Size = 38
     end
-    object cdsPlaneacionesClasesID_PLANEACION_UNIDAD: TStringField
+    object cdsEvaluacionesID_PLANEACION_UNIDAD: TStringField
+      FieldName = 'ID_PLANEACION_UNIDAD'
+      Required = True
+      Size = 38
+    end
+    object cdsEvaluacionesASPECTO: TStringField
+      FieldName = 'ASPECTO'
+      Size = 50
+    end
+    object cdsEvaluacionesEVIDENCIA: TMemoField
+      FieldName = 'EVIDENCIA'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsEvaluacionesPONDERACION: TSmallintField
+      FieldName = 'PONDERACION'
+    end
+    object cdsEvaluacionesFECHA: TDateField
+      FieldName = 'FECHA'
+    end
+    object cdsEvaluacionesID_INSTRUMENTO_EVALUACION: TStringField
+      FieldName = 'ID_INSTRUMENTO_EVALUACION'
+      Size = 38
+    end
+  end
+  object dsPerfiles: TDataSource
+    DataSet = cdsPerfiles
+    Left = 752
+    Top = 104
+  end
+  object cdsPerfiles: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspPerfiles'
+    RemoteServer = dpcData
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsEmpleadosNewRecord
+    Left = 752
+    Top = 56
+    object StringField1: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object StringField2: TStringField
+      FieldName = 'NOMBRE'
+      Size = 30
+    end
+  end
+  object dsProfesores: TDataSource
+    DataSet = cdsProfesores
+    Left = 904
+    Top = 104
+  end
+  object cdsProfesores: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspEmpleados'
+    RemoteServer = dpcData
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsEmpleadosNewRecord
+    Left = 904
+    Top = 56
+    object StringField3: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object StringField4: TStringField
+      FieldName = 'NOMBRE'
+      Size = 100
+    end
+    object StringField5: TStringField
+      FieldName = 'ID_PERFIL'
+      Size = 38
+    end
+    object StringField6: TStringField
+      FieldKind = fkLookup
+      FieldName = 'PERFIL'
+      LookupDataSet = cdsPerfiles
+      LookupKeyFields = 'ID'
+      LookupResultField = 'NOMBRE'
+      KeyFields = 'ID_PERFIL'
+      Lookup = True
+    end
+  end
+  object cdsUnidadesAtributos: TClientDataSet
+    Active = True
+    Aggregates = <>
+    DataSetField = cdsPlaneacionesUnidadesdtsUnidadesAtributos
+    Params = <>
+    OnNewRecord = cdsUnidadesAtributosNewRecord
+    Left = 896
+    Top = 152
+    object cdsUnidadesAtributosID_UNIDAD_ATRIBUTO: TStringField
+      FieldName = 'ID_UNIDAD_ATRIBUTO'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsUnidadesAtributosID_PLANEACION_UNIDAD: TStringField
       FieldName = 'ID_PLANEACION_UNIDAD'
       Size = 38
     end
-    object cdsPlaneacionesClasesSESION: TSmallintField
-      FieldName = 'SESION'
+    object cdsUnidadesAtributosID_ATRIBUTO_COMPETENCIA: TStringField
+      FieldName = 'ID_ATRIBUTO_COMPETENCIA'
+      Size = 38
     end
-    object cdsPlaneacionesClasesHORAS: TSmallintField
-      FieldName = 'HORAS'
+    object cdsUnidadesAtributosCRITERIOS_APRENDIZAJE: TMemoField
+      FieldName = 'CRITERIOS_APRENDIZAJE'
+      BlobType = ftMemo
+      Size = 1
     end
-    object cdsPlaneacionesClasesFECHA: TDateField
-      FieldName = 'FECHA'
+    object cdsUnidadesAtributosATRIBUTO: TStringField
+      FieldKind = fkLookup
+      FieldName = 'ATRIBUTO'
+      LookupDataSet = cdsAtributosCompetencias
+      LookupKeyFields = 'ID'
+      LookupResultField = 'ID'
+      KeyFields = 'ID_ATRIBUTO_COMPETENCIA'
+      Lookup = True
     end
-    object cdsPlaneacionesClasesCONTENIDO_TEMATICO: TStringField
-      FieldName = 'CONTENIDO_TEMATICO'
+  end
+  object dsUnidadesAtributos: TDataSource
+    DataSet = cdsUnidadesAtributos
+    Left = 896
+    Top = 200
+  end
+  object cdsUnidadesCompetencias: TClientDataSet
+    Active = True
+    Aggregates = <>
+    DataSetField = cdsPlaneacionesUnidadesdtsUnidadesCompetencias
+    Params = <>
+    OnNewRecord = cdsUnidadesCompetenciasNewRecord
+    Left = 1024
+    Top = 152
+    object cdsUnidadesCompetenciasID_UNIDAD_COMPETENCIA: TStringField
+      FieldName = 'ID_UNIDAD_COMPETENCIA'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsUnidadesCompetenciasID_PLANEACION_UNIDAD: TStringField
+      FieldName = 'ID_PLANEACION_UNIDAD'
+      Size = 38
+    end
+    object cdsUnidadesCompetenciasID_COMPETENCIA_DISCIPLINAR: TStringField
+      FieldName = 'ID_COMPETENCIA_DISCIPLINAR'
+      Size = 38
+    end
+    object cdsUnidadesCompetenciasCRITERIOS_APRENDIZAJE: TMemoField
+      FieldName = 'CRITERIOS_APRENDIZAJE'
+      BlobType = ftMemo
+      Size = 1
+    end
+    object cdsUnidadesCompetenciasCOMPETENCIA_DISCIPLINAR: TStringField
+      FieldKind = fkLookup
+      FieldName = 'COMPETENCIA_DISCIPLINAR'
+      LookupDataSet = cdsCompetenciasDisciplinares
+      LookupKeyFields = 'ID_COMPETENCIA_DISCIPLINAR'
+      LookupResultField = 'ID_COMPETENCIA_DISCIPLINAR'
+      KeyFields = 'ID_COMPETENCIA_DISCIPLINAR'
+      Lookup = True
+    end
+  end
+  object dsUnidadesCompetencias: TDataSource
+    DataSet = cdsUnidadesCompetencias
+    Left = 1024
+    Top = 200
+  end
+  object dsAtributosCompetencias: TDataSource
+    DataSet = cdsAtributosCompetencias
+    Left = 1152
+    Top = 104
+  end
+  object cdsAtributosCompetencias: TClientDataSet
+    Active = True
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspAtributosCompetencias'
+    RemoteServer = dpcData
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
+    OnNewRecord = cdsInstrumentosEvaluacionNewRecord
+    Left = 1152
+    Top = 56
+    object cdsAtributosCompetenciasID: TStringField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsAtributosCompetenciasNOMBRE: TStringField
+      FieldName = 'NOMBRE'
       Size = 250
     end
-    object cdsPlaneacionesClasesPROPOSITO_SESION: TStringField
-      FieldName = 'PROPOSITO_SESION'
-      Size = 100
+    object cdsAtributosCompetenciasID_COMPETENCIA_GENERICA: TStringField
+      FieldName = 'ID_COMPETENCIA_GENERICA'
+      Required = True
+      Size = 38
     end
-    object cdsPlaneacionesClasesSABERES_CONCEPTUALES: TStringField
-      FieldName = 'SABERES_CONCEPTUALES'
-      Size = 100
-    end
-    object cdsPlaneacionesClasesSABERES_PROCEDIMENTALES: TStringField
-      FieldName = 'SABERES_PROCEDIMENTALES'
-      Size = 100
-    end
-    object cdsPlaneacionesClasesSABERES_ACTITUDINALES: TStringField
-      FieldName = 'SABERES_ACTITUDINALES'
-      Size = 100
-    end
-    object cdsPlaneacionesClasesACTIVIDAD_APERTURA: TStringField
-      FieldName = 'ACTIVIDAD_APERTURA'
-      Size = 50
-    end
-    object cdsPlaneacionesClasesACTIVIDAD_DESARROLLO: TStringField
-      FieldName = 'ACTIVIDAD_DESARROLLO'
-      Size = 50
-    end
-    object cdsPlaneacionesClasesACTIVIDAD_CIERRE: TStringField
-      FieldName = 'ACTIVIDAD_CIERRE'
-      Size = 50
-    end
-    object cdsPlaneacionesClasesRECURSOS_MATERIALES: TStringField
-      FieldName = 'RECURSOS_MATERIALES'
-      Size = 50
-    end
-    object cdsPlaneacionesClasesOBSERVACIONES_COMENTARIOS: TStringField
-      FieldName = 'OBSERVACIONES_COMENTARIOS'
-      Size = 200
-    end
-    object cdsPlaneacionesClasesdtsCompetenciasDisciplinares: TDataSetField
-      FieldName = 'dtsCompetenciasDisciplinares'
-    end
-    object cdsPlaneacionesClasesdtsCompetenciasGenericas: TDataSetField
-      FieldName = 'dtsCompetenciasGenericas'
-    end
-  end
-  object cdsCompetenciasGenericas: TClientDataSet
-    Aggregates = <>
-    DataSetField = cdsPlaneacionesClasesdtsCompetenciasGenericas
-    Params = <>
-    RemoteServer = dpcData
-    Left = 880
-    Top = 312
-  end
-  object dsCompetenciasGenericas: TDataSource
-    DataSet = cdsCompetenciasGenericas
-    Left = 888
-    Top = 320
   end
   object dsCompetenciasDisciplinares: TDataSource
     DataSet = cdsCompetenciasDisciplinares
-    Left = 1040
-    Top = 320
+    Left = 1296
+    Top = 104
   end
   object cdsCompetenciasDisciplinares: TClientDataSet
-    Aggregates = <>
-    DataSetField = cdsPlaneacionesClasesdtsCompetenciasDisciplinares
-    Params = <>
-    RemoteServer = dpcData
-    Left = 1032
-    Top = 312
-  end
-  object RzFrameController1: TRzFrameController
-    Left = 176
-    Top = 8
-  end
-  object RzFrameController2: TRzFrameController
-    FocusColor = clInfoBk
-    FrameColor = clBlack
-    FrameHotTrack = True
-    FrameSides = [sdBottom]
-    FrameVisible = True
-    FramingPreference = fpCustomFraming
-    ParentColor = True
-    Left = 280
-    Top = 8
-  end
-  object dpcData: TDSProviderConnection
-    ServerClassName = 'TsrvMethods'
-    SQLConnection = cntData
-    Left = 56
-    Top = 16
-  end
-  object dsInstrumentosEvaluacion: TDataSource
-    DataSet = cdsInstrumentosEvaluacion
-    Left = 1128
-    Top = 136
-  end
-  object cdsInstrumentosEvaluacion: TClientDataSet
+    Active = True
     Aggregates = <>
     Params = <>
-    ProviderName = 'dspInstrumentosEvaluacion'
+    ProviderName = 'dspCompetenciasDisciplinares'
     RemoteServer = dpcData
-    AfterPost = cdsInstrumentosEvaluacionAfterPost
-    AfterDelete = cdsInstrumentosEvaluacionAfterPost
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
     OnNewRecord = cdsInstrumentosEvaluacionNewRecord
-    Left = 1120
-    Top = 128
+    Left = 1296
+    Top = 56
+    object cdsCompetenciasDisciplinaresID_COMPETENCIA_DISCIPLINAR: TStringField
+      FieldName = 'ID_COMPETENCIA_DISCIPLINAR'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      Required = True
+      Size = 38
+    end
+    object cdsCompetenciasDisciplinaresNOMBRE: TStringField
+      FieldName = 'NOMBRE'
+      Size = 250
+    end
   end
 end
