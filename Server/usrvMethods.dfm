@@ -2,63 +2,16 @@ object srvMethods: TsrvMethods
   OldCreateOrder = False
   Height = 606
   Width = 1372
-  object cntData: TSQLConnection
-    ConnectionName = 'FBConnection'
-    DriverName = 'Firebird'
-    LoginPrompt = False
-    Params.Strings = (
-      'DriverUnit=Data.DBXFirebird'
-      
-        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver250.' +
-        'bpl'
-      
-        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
-        'nd.Data.DbxCommonDriver,Version=24.0.0.0,Culture=neutral,PublicK' +
-        'eyToken=91d62ebb5b0d1b1b'
-      
-        'MetaDataPackageLoader=TDBXFirebirdMetaDataCommandFactory,DbxFire' +
-        'birdDriver250.bpl'
-      
-        'MetaDataAssemblyLoader=Borland.Data.TDBXFirebirdMetaDataCommandF' +
-        'actory,Borland.Data.DbxFirebirdDriver,Version=24.0.0.0,Culture=n' +
-        'eutral,PublicKeyToken=91d62ebb5b0d1b1b'
-      'GetDriverFunc=getSQLDriverINTERBASE'
-      'LibraryName=dbxfb.dll'
-      'LibraryNameOsx=libsqlfb.dylib'
-      'VendorLib=fbclient.dll'
-      'VendorLibWin64=fbclient.dll'
-      'VendorLibOsx=/Library/Frameworks/Firebird.framework/Firebird'
-      'Role=RoleName'
-      'MaxBlobSize=-1'
-      'TrimChar=False'
-      'DriverName=Firebird'
-      'Database=C:\APPDATA\PLAN.FDB'
-      'RoleName=RoleName'
-      'User_Name=sysdba'
-      'Password=masterkey'
-      'ServerCharSet='
-      'SQLDialect=3'
-      'ErrorResourceFile='
-      'LocaleCode=0000'
-      'BlobSize=-1'
-      'CommitRetain=False'
-      'WaitOnLocks=True'
-      'IsolationLevel=ReadCommitted'
-      'Trim Char=False')
-    Left = 48
-    Top = 8
-  end
   object dspEmpleados: TDataSetProvider
     DataSet = dtsEmpleados
     UpdateMode = upWhereChanged
     Left = 808
     Top = 104
   end
-  object dtsEmpleados: TSQLDataSet
-    CommandText = 'select * from EMPLEADOS'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsEmpleados: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from EMPLEADOS')
     Left = 808
     Top = 56
     object dtsEmpleadosID: TStringField
@@ -77,19 +30,10 @@ object srvMethods: TsrvMethods
       Size = 38
     end
   end
-  object dtsLineasDisciplinares: TSQLDataSet
-    CommandText = 
-      'select * from LINEAS_DISCIPLINARES where ID_AREA_CURRICULAR = :I' +
-      'D_AREA_CURRICULAR'
-    DataSource = dsAreasCurriculares
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_AREA_CURRICULAR'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsLineasDisciplinares: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from LINEAS_DISCIPLINARES order by ID')
     Left = 648
     Top = 56
     object dtsLineasDisciplinaresID: TStringField
@@ -110,11 +54,10 @@ object srvMethods: TsrvMethods
     Left = 536
     Top = 104
   end
-  object dtsAreasCurriculares: TSQLDataSet
-    CommandText = 'select * from AREAS_CURRICULARES'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsAreasCurriculares: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from AREAS_CURRICULARES')
     Left = 536
     Top = 56
     object dtsAreasCurricularesID_AREA_CURRICULAR: TStringField
@@ -135,11 +78,10 @@ object srvMethods: TsrvMethods
     Left = 408
     Top = 104
   end
-  object dtsComponentesCurriculares: TSQLDataSet
-    CommandText = 'select * from COMPONENTES_CURRICULARES'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsComponentesCurriculares: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from COMPONENTES_CURRICULARES')
     Left = 408
     Top = 56
     object dtsComponentesCurricularesID: TStringField
@@ -160,11 +102,10 @@ object srvMethods: TsrvMethods
     Left = 264
     Top = 104
   end
-  object dtsSecretariosAcademicos: TSQLDataSet
-    CommandText = 'select * from EMPLEADOS where ID_PERFIL = 3'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsSecretariosAcademicos: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from EMPLEADOS where ID_PERFIL = 3')
     Left = 264
     Top = 56
     object dtsSecretariosAcademicosID: TStringField
@@ -185,11 +126,10 @@ object srvMethods: TsrvMethods
     Left = 152
     Top = 104
   end
-  object dtsModalidades: TSQLDataSet
-    CommandText = 'select * from MODALIDADES'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsModalidades: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from MODALIDADES')
     Left = 152
     Top = 56
     object dtsModalidadesID: TStringField
@@ -204,19 +144,19 @@ object srvMethods: TsrvMethods
       Size = 30
     end
   end
-  object dtsPlanes: TSQLDataSet
-    CommandText = 'select * from PLANES where ID_CICLO_ESCOLAR = :ID_CICLO_ESCOLAR'
-    DataSource = dsCiclosEscolares
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_CICLO_ESCOLAR'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsPlanes: TFDQuery
+    MasterSource = dsCiclosEscolares
+    Connection = cntData
+    SQL.Strings = (
+      'select * from PLANES where ID_CICLO_ESCOLAR = :ID_CICLO_ESCOLAR')
     Left = 128
     Top = 248
+    ParamData = <
+      item
+        Name = 'ID_CICLO_ESCOLAR'
+        DataType = ftString
+        ParamType = ptInput
+      end>
     object dtsPlanesID_PLAN: TStringField
       FieldName = 'ID_PLAN'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -234,21 +174,21 @@ object srvMethods: TsrvMethods
       Size = 38
     end
   end
-  object dtsUnidadesAcademicas: TSQLDataSet
-    CommandText = 
-      'select * from UNIDADES_ACADEMICAS where ID_UNIDAD_REGIONAL = :ID' +
-      '_UNIDAD_REGIONAL'
-    DataSource = dsUnidadesRegionales
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_UNIDAD_REGIONAL'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsUnidadesAcademicas: TFDQuery
+    MasterSource = dsUnidadesRegionales
+    Connection = cntData
+    SQL.Strings = (
+      
+        'select * from UNIDADES_ACADEMICAS where ID_UNIDAD_REGIONAL = :ID' +
+        '_UNIDAD_REGIONAL')
     Left = 48
     Top = 152
+    ParamData = <
+      item
+        Name = 'ID_UNIDAD_REGIONAL'
+        DataType = ftString
+        ParamType = ptInput
+      end>
     object dtsUnidadesAcademicasID: TStringField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -266,19 +206,28 @@ object srvMethods: TsrvMethods
       Size = 38
     end
   end
-  object dtsPlaneacionesGenerales: TSQLDataSet
-    CommandText = 'select * from PLANEACIONES_GENERALES where ID_PLAN = :ID_PLAN'
-    DataSource = dsPlanes
-    MaxBlobSize = 1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_PLAN'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsPlaneacionesGenerales: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      
+        'select * from PLANEACIONES_GENERALES where ID_PLAN = :ID_PLAN an' +
+        'd ID_SECRETARIO_ACTA = :ID_SECRETARIO_ACTA')
     Left = 224
     Top = 248
+    ParamData = <
+      item
+        Name = 'ID_PLAN'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 38
+        Value = Null
+      end
+      item
+        Name = 'ID_SECRETARIO_ACTA'
+        DataType = ftString
+        ParamType = ptInput
+        Size = 38
+      end>
     object dtsPlaneacionesGeneralesID_PLANEACION_GENERAL: TStringField
       FieldName = 'ID_PLANEACION_GENERAL'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -304,6 +253,11 @@ object srvMethods: TsrvMethods
     object dtsPlaneacionesGeneralesLUGAR: TStringField
       FieldName = 'LUGAR'
       Size = 50
+    end
+    object dtsPlaneacionesGeneralesID_SECRETARIO_ACTA: TStringField
+      FieldName = 'ID_SECRETARIO_ACTA'
+      Origin = 'ID_SECRETARIO_ACTA'
+      Size = 38
     end
     object dtsPlaneacionesGeneralesID_PROFESOR_COORDINADOR: TStringField
       FieldName = 'ID_PROFESOR_COORDINADOR'
@@ -344,7 +298,6 @@ object srvMethods: TsrvMethods
     object dtsPlaneacionesGeneralesPROPOSITO_GENERAL: TMemoField
       FieldName = 'PROPOSITO_GENERAL'
       BlobType = ftMemo
-      Size = 1
     end
     object dtsPlaneacionesGeneralesEVIDENCIA_INTEGRADORA: TStringField
       FieldName = 'EVIDENCIA_INTEGRADORA'
@@ -353,24 +306,23 @@ object srvMethods: TsrvMethods
     object dtsPlaneacionesGeneralesORIENTACIONES_GENERALES: TMemoField
       FieldName = 'ORIENTACIONES_GENERALES'
       BlobType = ftMemo
-      Size = 1
     end
   end
-  object dtsProfesoresParticipantes: TSQLDataSet
-    CommandText = 
-      'select * from PROFESORES_PARTICIPANTES'#13#10'where ID_PLANEACION_GENE' +
-      'RAL = :ID_PLANEACION_GENERAL'
-    DataSource = dsPlaneacionesGenerales
-    MaxBlobSize = -1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_PLANEACION_GENERAL'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsProfesoresParticipantes: TFDQuery
+    MasterSource = dsPlaneacionesGenerales
+    MasterFields = 'ID_PLANEACION_GENERAL'
+    Connection = cntData
+    SQL.Strings = (
+      'select * from PROFESORES_PARTICIPANTES'
+      'where ID_PLANEACION_GENERAL = :ID_PLANEACION_GENERAL')
     Left = 360
     Top = 248
+    ParamData = <
+      item
+        Name = 'ID_PLANEACION_GENERAL'
+        DataType = ftString
+        ParamType = ptInput
+      end>
     object dtsProfesoresParticipantesID: TStringField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -396,21 +348,20 @@ object srvMethods: TsrvMethods
     Left = 224
     Top = 296
   end
-  object dtsPlaneacionesClases: TSQLDataSet
-    CommandText = 
-      'select * from PLANEACIONES_CLASES'#13#10'where ID_PLANEACION_UNIDAD = ' +
-      ':ID_PLANEACION_UNIDAD'
-    DataSource = dsPlaneacionesUnidades
-    MaxBlobSize = 1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_PLANEACION_UNIDAD'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsPlaneacionesClases: TFDQuery
+    MasterSource = dsPlaneacionesUnidades
+    Connection = cntData
+    SQL.Strings = (
+      'select * from PLANEACIONES_CLASES'
+      'where ID_PLANEACION_UNIDAD = :ID_PLANEACION_UNIDAD')
     Left = 1112
     Top = 248
+    ParamData = <
+      item
+        Name = 'ID_PLANEACION_UNIDAD'
+        DataType = ftString
+        ParamType = ptInput
+      end>
     object dtsPlaneacionesClasesID_PLANEACION_CLASE: TStringField
       FieldName = 'ID_PLANEACION_CLASE'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -497,21 +448,21 @@ object srvMethods: TsrvMethods
     Left = 640
     Top = 296
   end
-  object dtsEvaluaciones: TSQLDataSet
-    CommandText = 
-      'select * from EVALUACIONES'#13#10'where ID_PLANEACION_UNIDAD = :ID_PLA' +
-      'NEACION_UNIDAD'
-    DataSource = dsPlaneacionesUnidades
-    MaxBlobSize = 1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_PLANEACION_UNIDAD'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsEvaluaciones: TFDQuery
+    MasterSource = dsPlaneacionesUnidades
+    MasterFields = 'ID_PLANEACION_UNIDAD'
+    Connection = cntData
+    SQL.Strings = (
+      'select * from EVALUACIONES'
+      'where ID_PLANEACION_UNIDAD = :ID_PLANEACION_UNIDAD')
     Left = 1008
     Top = 248
+    ParamData = <
+      item
+        Name = 'ID_PLANEACION_UNIDAD'
+        DataType = ftString
+        ParamType = ptInput
+      end>
     object dtsEvaluacionesID: TStringField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -543,21 +494,21 @@ object srvMethods: TsrvMethods
       Size = 38
     end
   end
-  object dtsPlaneacionesUnidades: TSQLDataSet
-    CommandText = 
-      'select * from PLANEACIONES_UNIDADES'#13#10'where ID_PLANEACION_GENERAL' +
-      ' = :ID_PLANEACION_GENERAL'
-    DataSource = dsPlaneacionesGenerales
-    MaxBlobSize = 1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_PLANEACION_GENERAL'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsPlaneacionesUnidades: TFDQuery
+    MasterSource = dsPlaneacionesGenerales
+    MasterFields = 'ID_PLANEACION_GENERAL'
+    Connection = cntData
+    SQL.Strings = (
+      'select * from PLANEACIONES_UNIDADES'
+      'where ID_PLANEACION_GENERAL = :ID_PLANEACION_GENERAL')
     Left = 640
     Top = 248
+    ParamData = <
+      item
+        Name = 'ID_PLANEACION_GENERAL'
+        DataType = ftString
+        ParamType = ptInput
+      end>
     object dtsPlaneacionesUnidadesID_PLANEACION_UNIDAD: TStringField
       FieldName = 'ID_PLANEACION_UNIDAD'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -617,21 +568,21 @@ object srvMethods: TsrvMethods
       Size = 1
     end
   end
-  object dtsAcuerdos: TSQLDataSet
-    CommandText = 
-      'select * from ACUERDOS'#13#10'where ID_PLANEACION_GENERAL = :ID_PLANEA' +
-      'CION_GENERAL'
-    DataSource = dsPlaneacionesGenerales
-    MaxBlobSize = 1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_PLANEACION_GENERAL'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsAcuerdos: TFDQuery
+    MasterSource = dsPlaneacionesGenerales
+    MasterFields = 'ID_PLANEACION_GENERAL'
+    Connection = cntData
+    SQL.Strings = (
+      'select * from ACUERDOS'
+      'where ID_PLANEACION_GENERAL = :ID_PLANEACION_GENERAL')
     Left = 536
     Top = 248
+    ParamData = <
+      item
+        Name = 'ID_PLANEACION_GENERAL'
+        DataType = ftString
+        ParamType = ptInput
+      end>
     object dtsAcuerdosID: TStringField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -665,21 +616,21 @@ object srvMethods: TsrvMethods
       FieldName = 'FECHA'
     end
   end
-  object dtsReuniones: TSQLDataSet
-    CommandText = 
-      'select * from REUNIONES'#13#10'where ID_PLANEACION_GENERAL = :ID_PLANE' +
-      'ACION_GENERAL'
-    DataSource = dsPlaneacionesGenerales
-    MaxBlobSize = 1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_PLANEACION_GENERAL'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsReuniones: TFDQuery
+    MasterSource = dsPlaneacionesGenerales
+    MasterFields = 'ID_PLANEACION_GENERAL'
+    Connection = cntData
+    SQL.Strings = (
+      'select * from REUNIONES'
+      'where ID_PLANEACION_GENERAL = :ID_PLANEACION_GENERAL')
     Left = 464
     Top = 248
+    ParamData = <
+      item
+        Name = 'ID_PLANEACION_GENERAL'
+        DataType = ftString
+        ParamType = ptInput
+      end>
     object dtsReunionesID: TStringField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -710,11 +661,6 @@ object srvMethods: TsrvMethods
     Left = 1000
     Top = 104
   end
-  object dsPlanes: TDataSource
-    DataSet = dtsPlanes
-    Left = 128
-    Top = 296
-  end
   object dspUnidadesRegionales: TDataSetProvider
     DataSet = dtsUnidadesRegionales
     Options = [poCascadeDeletes, poCascadeUpdates, poPropogateChanges, poUseQuoteChar]
@@ -722,11 +668,10 @@ object srvMethods: TsrvMethods
     Left = 48
     Top = 104
   end
-  object dtsUnidadesRegionales: TSQLDataSet
-    CommandText = 'select * from UNIDADES_REGIONALES'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsUnidadesRegionales: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from UNIDADES_REGIONALES')
     Left = 48
     Top = 56
     object dtsUnidadesRegionalesID_UNIDAD_REGIONAL: TStringField
@@ -738,7 +683,7 @@ object srvMethods: TsrvMethods
     object dtsUnidadesRegionalesNOMBRE: TStringField
       DisplayLabel = 'Nombre'
       FieldName = 'NOMBRE'
-      Size = 10
+      Size = 30
     end
   end
   object dsUnidadesRegionales: TDataSource
@@ -751,11 +696,10 @@ object srvMethods: TsrvMethods
     Left = 48
     Top = 344
   end
-  object dtsInstrumentosEvaluacion: TSQLDataSet
-    CommandText = 'select * from INSTRUMENTOS_EVALUACION'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsInstrumentosEvaluacion: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from INSTRUMENTOS_EVALUACION')
     Left = 1000
     Top = 56
     object dtsInstrumentosEvaluacionID: TStringField
@@ -777,25 +721,25 @@ object srvMethods: TsrvMethods
     Left = 48
     Top = 296
   end
-  object dtsCiclosEscolares: TSQLDataSet
-    CommandText = 
-      'select * from CICLOS_ESCOLARES where ID_UNIDAD_REGIONAL = :ID_UN' +
-      'IDAD_REGIONAL and ACTIVO >= :ACTIVO'
-    MaxBlobSize = -1
-    Params = <
+  object dtsCiclosEscolares: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      
+        'select * from CICLOS_ESCOLARES where ID_UNIDAD_REGIONAL = :ID_UN' +
+        'IDAD_REGIONAL and ACTIVO >= :ACTIVO')
+    Left = 48
+    Top = 248
+    ParamData = <
       item
-        DataType = ftString
         Name = 'ID_UNIDAD_REGIONAL'
+        DataType = ftString
         ParamType = ptInput
       end
       item
-        DataType = ftSmallint
         Name = 'ACTIVO'
+        DataType = ftSmallint
         ParamType = ptInput
       end>
-    SQLConnection = cntData
-    Left = 48
-    Top = 248
     object dtsCiclosEscolaresID_CICLO_ESCOLAR: TStringField
       FieldName = 'ID_CICLO_ESCOLAR'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -817,11 +761,6 @@ object srvMethods: TsrvMethods
       FieldName = 'ACTIVO'
     end
   end
-  object dsAreasCurriculares: TDataSource
-    DataSet = dtsAreasCurriculares
-    Left = 536
-    Top = 152
-  end
   object dsPlaneacionesClases: TDataSource
     DataSet = dtsPlaneacionesClases
     Left = 1112
@@ -833,11 +772,10 @@ object srvMethods: TsrvMethods
     Left = 736
     Top = 104
   end
-  object dtsPerfiles: TSQLDataSet
-    CommandText = 'select * from PERFILES'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsPerfiles: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from PERFILES')
     Left = 736
     Top = 56
     object StringField1: TStringField
@@ -858,11 +796,10 @@ object srvMethods: TsrvMethods
     Left = 888
     Top = 104
   end
-  object dtsProfesores: TSQLDataSet
-    CommandText = 'select * from EMPLEADOS where ID_PERFIL > 3'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsProfesores: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from EMPLEADOS where ID_PERFIL > 3')
     Left = 888
     Top = 56
     object StringField3: TStringField
@@ -881,21 +818,22 @@ object srvMethods: TsrvMethods
       Size = 38
     end
   end
-  object dtsUnidadesAtributos: TSQLDataSet
-    CommandText = 
-      'select * from UNIDADES_ATRIBUTOS'#13#10'where ID_PLANEACION_UNIDAD = :' +
-      'ID_PLANEACION_UNIDAD'#13#10'order by ID_UNIDAD_ATRIBUTO'
-    DataSource = dsPlaneacionesUnidades
-    MaxBlobSize = 1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_PLANEACION_UNIDAD'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsUnidadesAtributos: TFDQuery
+    MasterSource = dsPlaneacionesUnidades
+    MasterFields = 'ID_PLANEACION_UNIDAD'
+    Connection = cntData
+    SQL.Strings = (
+      'select * from UNIDADES_ATRIBUTOS'
+      'where ID_PLANEACION_UNIDAD = :ID_PLANEACION_UNIDAD'
+      'order by ID_UNIDAD_ATRIBUTO')
     Left = 768
     Top = 248
+    ParamData = <
+      item
+        Name = 'ID_PLANEACION_UNIDAD'
+        DataType = ftString
+        ParamType = ptInput
+      end>
     object dtsUnidadesAtributosID_UNIDAD_ATRIBUTO: TStringField
       FieldName = 'ID_UNIDAD_ATRIBUTO'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -916,21 +854,22 @@ object srvMethods: TsrvMethods
       Size = 1
     end
   end
-  object dtsUnidadesCompetencias: TSQLDataSet
-    CommandText = 
-      'select * from UNIDADES_COMPETENCIAS'#13#10'where ID_PLANEACION_UNIDAD ' +
-      '= :ID_PLANEACION_UNIDAD'#13#10'order by ID_UNIDAD_COMPETENCIA'
-    DataSource = dsPlaneacionesUnidades
-    MaxBlobSize = 1
-    Params = <
-      item
-        DataType = ftString
-        Name = 'ID_PLANEACION_UNIDAD'
-        ParamType = ptInput
-      end>
-    SQLConnection = cntData
+  object dtsUnidadesCompetencias: TFDQuery
+    MasterSource = dsPlaneacionesUnidades
+    MasterFields = 'ID_PLANEACION_UNIDAD'
+    Connection = cntData
+    SQL.Strings = (
+      'select * from UNIDADES_COMPETENCIAS'
+      'where ID_PLANEACION_UNIDAD = :ID_PLANEACION_UNIDAD'
+      'order by ID_UNIDAD_COMPETENCIA')
     Left = 896
     Top = 248
+    ParamData = <
+      item
+        Name = 'ID_PLANEACION_UNIDAD'
+        DataType = ftString
+        ParamType = ptInput
+      end>
     object dtsUnidadesCompetenciasID_UNIDAD_COMPETENCIA: TStringField
       FieldName = 'ID_UNIDAD_COMPETENCIA'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -957,11 +896,10 @@ object srvMethods: TsrvMethods
     Left = 1136
     Top = 104
   end
-  object dtsAtributosCompetencias: TSQLDataSet
-    CommandText = 'select * from ATRIBUTOS_COMPETENCIAS'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsAtributosCompetencias: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from ATRIBUTOS_COMPETENCIAS')
     Left = 1136
     Top = 56
     object dtsAtributosCompetenciasID: TStringField
@@ -986,11 +924,10 @@ object srvMethods: TsrvMethods
     Left = 1280
     Top = 104
   end
-  object dtsCompetenciasDisciplinares: TSQLDataSet
-    CommandText = 'select * from COMPETENCIAS_DISCIPLINARES'
-    MaxBlobSize = -1
-    Params = <>
-    SQLConnection = cntData
+  object dtsCompetenciasDisciplinares: TFDQuery
+    Connection = cntData
+    SQL.Strings = (
+      'select * from COMPETENCIAS_DISCIPLINARES')
     Left = 1280
     Top = 56
     object dtsCompetenciasDisciplinaresID_COMPETENCIA_DISCIPLINAR: TStringField
@@ -1003,5 +940,28 @@ object srvMethods: TsrvMethods
       FieldName = 'NOMBRE'
       Size = 250
     end
+  end
+  object cntData: TFDConnection
+    Params.Strings = (
+      'Database=C:\AppData\PLAN.FDB'
+      'User_Name=sysdba'
+      'Password=auofdsbcs'
+      'DriverID=FB')
+    LoginPrompt = False
+    Left = 48
+    Top = 8
+  end
+  object dspPlaneacionesGenerales: TDataSetProvider
+    DataSet = dtsPlaneacionesGenerales
+    Options = [poCascadeDeletes, poCascadeUpdates, poPropogateChanges, poUseQuoteChar]
+    UpdateMode = upWhereChanged
+    Left = 224
+    Top = 344
+  end
+  object dspLineasDisciplinares: TDataSetProvider
+    DataSet = dtsLineasDisciplinares
+    UpdateMode = upWhereChanged
+    Left = 648
+    Top = 104
   end
 end

@@ -13,7 +13,7 @@ object frmMain: TfrmMain
   OldCreateOrder = False
   Position = poScreenCenter
   WindowState = wsMaximized
-  OnCloseQuery = FormCloseQuery
+  OnClose = FormClose
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -75,6 +75,7 @@ object frmMain: TfrmMain
     TabOrder = 1
     OnHotSpotClick = RzSizePanel1HotSpotClick
     object RzGroupBar1: TRzGroupBar
+      Tag = -1
       Left = 0
       Top = 0
       Height = 657
@@ -92,13 +93,13 @@ object frmMain: TfrmMain
             Action = actUnidadesRegionales
           end
           item
+            Action = actCiclosEscolares
+          end
+          item
             Action = actPlanes
           end
           item
             Action = actModalidades
-          end
-          item
-            Action = actCiclosEscolares
           end
           item
             Action = actComponentesCurriculares
@@ -152,10 +153,10 @@ object frmMain: TfrmMain
       Width = 754
       Height = 618
       Hint = ''
-      ActivePage = TabSheet5
+      ActivePage = TabSheet1
       ActivePageDefault = TabSheet1
       Align = alRight
-      TabIndex = 4
+      TabIndex = 0
       TabOrder = 1
       FixedDimension = 19
       object TabSheet1: TRzTabSheet
@@ -609,6 +610,7 @@ object frmMain: TfrmMain
             DataSource = dmData.dsPlanes
           end
           object DBLookupComboBox3: TRzDBLookupComboBox
+            Tag = -1
             Left = 345
             Top = 27
             Width = 219
@@ -629,7 +631,9 @@ object frmMain: TfrmMain
             Width = 88
             Height = 21
             Anchors = [akTop, akRight]
+            Date = 43110.690770300930000000
             Format = ''
+            Time = 43110.690770300930000000
             ParentColor = True
             TabOrder = 14
             FrameController = dmData.RzFrameController2
@@ -687,7 +691,9 @@ object frmMain: TfrmMain
             Width = 82
             Height = 21
             Anchors = [akTop, akRight]
+            Date = 43110.690770300930000000
             Format = ''
+            Time = 43110.690770300930000000
             ParentColor = True
             TabOrder = 3
             FrameController = dmData.RzFrameController2
@@ -702,7 +708,9 @@ object frmMain: TfrmMain
             Width = 82
             Height = 21
             Anchors = [akTop, akRight]
+            Date = 43110.690770300930000000
             Format = ''
+            Time = 43110.690770300930000000
             ParentColor = True
             TabOrder = 4
             FrameController = dmData.RzFrameController2
@@ -712,6 +720,7 @@ object frmMain: TfrmMain
             DataSource = dmData.dsPlaneacionesGenerales
           end
           object edtAsignatura: TRzDBEdit
+            Tag = -1
             Left = 70
             Top = 88
             Width = 211
@@ -724,6 +733,7 @@ object frmMain: TfrmMain
             TabOrder = 5
           end
           object RzDBLookupComboBox3: TRzDBLookupComboBox
+            Tag = -1
             Left = 403
             Top = 115
             Width = 161
@@ -739,6 +749,7 @@ object frmMain: TfrmMain
             FrameController = dmData.RzFrameController2
           end
           object RzDBEdit3: TRzDBEdit
+            Tag = -1
             Left = 570
             Top = 115
             Width = 82
@@ -752,6 +763,7 @@ object frmMain: TfrmMain
             TabOrder = 8
           end
           object RzDBEdit4: TRzDBEdit
+            Tag = -1
             Left = 658
             Top = 115
             Width = 82
@@ -765,6 +777,7 @@ object frmMain: TfrmMain
             TabOrder = 9
           end
           object RzDBLookupComboBox4: TRzDBLookupComboBox
+            Tag = -1
             Left = 88
             Top = 59
             Width = 193
@@ -779,6 +792,7 @@ object frmMain: TfrmMain
             FrameController = dmData.RzFrameController2
           end
           object RzDBLookupComboBox5: TRzDBLookupComboBox
+            Tag = -1
             Left = 371
             Top = 59
             Width = 193
@@ -794,6 +808,7 @@ object frmMain: TfrmMain
             FrameController = dmData.RzFrameController2
           end
           object RzDBEdit6: TRzDBEdit
+            Tag = -1
             Left = 211
             Top = 312
             Width = 529
@@ -839,6 +854,7 @@ object frmMain: TfrmMain
             FramingPreference = fpCustomFraming
           end
           object cmbSemestre: TRzDBComboBox
+            Tag = -1
             Left = 406
             Top = 88
             Width = 114
@@ -892,7 +908,6 @@ object frmMain: TfrmMain
               Expanded = False
               FieldName = 'GRUPOS'
               Title.Caption = 'Grupos'
-              Width = 64
               Visible = True
             end>
         end
@@ -1015,7 +1030,9 @@ object frmMain: TfrmMain
             Width = 88
             Height = 21
             Anchors = [akLeft, akBottom]
+            Date = 43110.690770312510000000
             Format = ''
+            Time = 43110.690770312510000000
             ParentColor = True
             TabOrder = 1
             FrameController = dmData.RzFrameController2
@@ -1156,7 +1173,9 @@ object frmMain: TfrmMain
             Width = 88
             Height = 21
             Anchors = [akLeft, akBottom]
+            Date = 43110.690770312510000000
             Format = ''
+            Time = 43110.690770312510000000
             ParentColor = True
             TabOrder = 4
             FrameController = dmData.RzFrameController2
@@ -1248,6 +1267,7 @@ object frmMain: TfrmMain
             end
           end
           object RzDBGrid4: TRzDBGrid
+            Tag = -1
             Left = 0
             Top = 35
             Width = 750
@@ -1277,10 +1297,10 @@ object frmMain: TfrmMain
           Width = 750
           Height = 453
           Hint = ''
-          ActivePage = RzTabSheet3
+          ActivePage = TabSheet8
           ActivePageDefault = RzTabSheet1
           Align = alClient
-          TabIndex = 5
+          TabIndex = 2
           TabOrder = 1
           TabOrientation = toBottom
           FixedDimension = 19
@@ -1395,6 +1415,7 @@ object frmMain: TfrmMain
                 TabOrder = 0
               end
               object RzDBMemo6: TRzDBMemo
+                Tag = -1
                 Left = 16
                 Top = 62
                 Width = 718
@@ -1446,6 +1467,7 @@ object frmMain: TfrmMain
                 FramingPreference = fpCustomFraming
               end
               object RzDBEdit7: TRzDBEdit
+                Tag = -1
                 Left = 570
                 Top = 27
                 Width = 82
@@ -1483,6 +1505,7 @@ object frmMain: TfrmMain
           object TabSheet7: TRzTabSheet
             Caption = 'Competencias gen'#233'ricas'
             object RzDBGrid5: TRzDBGrid
+              Tag = -1
               Left = 0
               Top = 35
               Width = 273
@@ -1504,6 +1527,7 @@ object frmMain: TfrmMain
                 end>
             end
             object RzDBMemo15: TRzDBMemo
+              Tag = -1
               Left = 273
               Top = 35
               Width = 475
@@ -1541,6 +1565,7 @@ object frmMain: TfrmMain
           object TabSheet8: TRzTabSheet
             Caption = 'Competencias disciplinares'
             object RzDBGrid6: TRzDBGrid
+              Tag = -1
               Left = 0
               Top = 35
               Width = 273
@@ -1557,11 +1582,12 @@ object frmMain: TfrmMain
                 item
                   Expanded = False
                   FieldName = 'COMPETENCIA_DISCIPLINAR'
-                  Title.Caption = 'Competencia disciplinar'
+                  Title.Caption = 'Competencia disciplinar b'#225'sica y/o extendida'
                   Visible = True
                 end>
             end
             object RzDBMemo16: TRzDBMemo
+              Tag = -1
               Left = 273
               Top = 35
               Width = 475
@@ -1623,6 +1649,7 @@ object frmMain: TfrmMain
               Caption = 'Conceptuales'
             end
             object RzDBMemo10: TRzDBMemo
+              Tag = -1
               Left = 16
               Top = 156
               Width = 713
@@ -1640,6 +1667,7 @@ object frmMain: TfrmMain
               FramingPreference = fpCustomFraming
             end
             object RzDBMemo11: TRzDBMemo
+              Tag = -1
               Left = 16
               Top = 276
               Width = 713
@@ -1657,6 +1685,7 @@ object frmMain: TfrmMain
               FramingPreference = fpCustomFraming
             end
             object RzDBMemo12: TRzDBMemo
+              Tag = -1
               Left = 16
               Top = 36
               Width = 713
@@ -1677,6 +1706,7 @@ object frmMain: TfrmMain
           object RzTabSheet2: TRzTabSheet
             Caption = 'Evaluaci'#243'n'
             object DBGrid6: TRzDBGrid
+              Tag = -1
               Left = 0
               Top = 35
               Width = 748
@@ -1753,6 +1783,7 @@ object frmMain: TfrmMain
                 FrameController = dmData.RzFrameController1
               end
               object RzDBMemo9: TRzDBMemo
+                Tag = -1
                 Left = 16
                 Top = 67
                 Width = 721
@@ -1775,7 +1806,9 @@ object frmMain: TfrmMain
                 Width = 88
                 Height = 21
                 Anchors = [akLeft, akBottom]
+                Date = 43110.690770335650000000
                 Format = ''
+                Time = 43110.690770335650000000
                 ParentColor = True
                 TabOrder = 4
                 FrameController = dmData.RzFrameController2
@@ -1785,6 +1818,7 @@ object frmMain: TfrmMain
                 DataSource = dmData.dsEvaluaciones
               end
               object RzDBEdit5: TRzDBEdit
+                Tag = -1
                 Left = 135
                 Top = 6
                 Width = 602
@@ -1798,6 +1832,7 @@ object frmMain: TfrmMain
                 TabOrder = 0
               end
               object RzDBEdit8: TRzDBEdit
+                Tag = -1
                 Left = 81
                 Top = 254
                 Width = 63
@@ -1811,6 +1846,7 @@ object frmMain: TfrmMain
                 TabOrder = 3
               end
               object RzDBLookupComboBox6: TRzDBLookupComboBox
+                Tag = -1
                 Left = 150
                 Top = 224
                 Width = 587
@@ -1846,14 +1882,25 @@ object frmMain: TfrmMain
           end
           object RzTabSheet3: TRzTabSheet
             Caption = 'Planeaci'#243'n de clases'
-            object DBGrid7: TRzDBGrid
+            object RzLabel41: TRzLabel
               Left = 0
-              Top = 228
+              Top = 0
               Width = 748
-              Height = 204
+              Height = 13
+              Align = alTop
+              Caption = 'Contenidos tem'#225'ticos'
+              ExplicitWidth = 103
+            end
+            object DBGrid7: TRzDBGrid
+              Tag = 1
+              Left = 0
+              Top = 241
+              Width = 748
+              Height = 191
               Align = alClient
               DataSource = dmData.dsPlaneacionesClases
               Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
+              ReadOnly = True
               TabOrder = 0
               TitleFont.Charset = DEFAULT_CHARSET
               TitleFont.Color = clWindowText
@@ -1871,7 +1918,7 @@ object frmMain: TfrmMain
             end
             object RzPanel10: TRzPanel
               Left = 0
-              Top = 193
+              Top = 206
               Width = 748
               Height = 35
               Align = alTop
@@ -1887,8 +1934,9 @@ object frmMain: TfrmMain
               end
             end
             object RzDBMemo14: TRzDBMemo
+              Tag = -1
               Left = 0
-              Top = 0
+              Top = 13
               Width = 748
               Height = 193
               Align = alTop
@@ -1915,6 +1963,7 @@ object frmMain: TfrmMain
       Align = alTop
       TabOrder = 2
       object RzDBNavigator1: TRzDBNavigator
+        Tag = -1
         Left = 10
         Top = 4
         Width = 230
@@ -1933,6 +1982,11 @@ object frmMain: TfrmMain
       Caption = 'Unidades Regionales'
       OnExecute = actExecute
     end
+    object actCiclosEscolares: TAction
+      Category = 'Catalogos'
+      Caption = 'Ciclos Escolares'
+      OnExecute = actExecute
+    end
     object actPlanes: TAction
       Category = 'Catalogos'
       Caption = 'Planes'
@@ -1941,11 +1995,6 @@ object frmMain: TfrmMain
     object actModalidades: TAction
       Category = 'Catalogos'
       Caption = 'Modalidades'
-      OnExecute = actExecute
-    end
-    object actCiclosEscolares: TAction
-      Category = 'Catalogos'
-      Caption = 'Ciclos Escolares'
       OnExecute = actExecute
     end
     object actComponentesCurriculares: TAction

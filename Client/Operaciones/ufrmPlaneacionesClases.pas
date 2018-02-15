@@ -64,6 +64,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    procedure ActivarControles(Perfil: Integer);
   end;
 
 var
@@ -74,6 +75,23 @@ implementation
 {$R *.dfm}
 
 uses udmData, ufrmSeleccion;
+
+procedure TfrmPlaneacionesClases.ActivarControles(Perfil: Integer);
+var
+  i: Integer;
+begin
+  for i := 0 to Pred(ComponentCount) do
+  begin
+    if
+    //(Components[i] is TRzComboBox) or
+       (Components[i] is TRzDBGrid) or
+       (Components[i] is TRzDBEdit) or
+//       (Components[i] is TRzDBLookupComboBox) or
+       (Components[i] is TRzDBDateTimePicker) or
+       (Components[i] is TRzDBMemo) then
+      (Components[i] as TWinControl).Enabled:= Components[i].Tag >= Perfil;
+  end;
+end;
 
 procedure TfrmPlaneacionesClases.RzButton1Click(Sender: TObject);
 var

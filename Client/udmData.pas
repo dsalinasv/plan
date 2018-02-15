@@ -5,7 +5,7 @@ interface
 uses
   System.SysUtils, System.Classes, Data.DBXFirebird, Data.DB, Data.SqlExpr,
   Data.FMTBcd, Datasnap.Provider, Datasnap.DBClient, RzCommon, Data.DBXDataSnap,
-  Data.DBXCommon, IPPeerClient, Datasnap.DSConnect, Data.DbxHTTPLayer;
+  Data.DBXCommon, IPPeerClient, Datasnap.DSConnect, Data.DbxHTTPLayer, frxClass;
 
 type
   TdmData = class(TDataModule)
@@ -41,7 +41,6 @@ type
     cdsUnidadesRegionales: TClientDataSet;
     cdsUnidadesRegionalesID_UNIDAD_REGIONAL: TStringField;
     cdsUnidadesRegionalesNOMBRE: TStringField;
-    cdsUnidadesRegionalesdtsUnidadesAcademicas: TDataSetField;
     cdsEmpleados: TClientDataSet;
     cdsLineasDisciplinares: TClientDataSet;
     cdsAreasCurriculares: TClientDataSet;
@@ -145,7 +144,6 @@ type
     cdsPlaneacionesClasesRECURSOS_MATERIALES: TMemoField;
     cdsPlaneacionesClasesOBSERVACIONES_COMENTARIOS: TMemoField;
     cdsAreasCurricularesID_AREA_CURRICULAR: TStringField;
-    cdsAreasCurricularesdtsLineasDisciplinares: TDataSetField;
     cdsCiclosEscolaresACTIVO: TSmallintField;
     dsPerfiles: TDataSource;
     cdsPerfiles: TClientDataSet;
@@ -169,8 +167,6 @@ type
     dsUnidadesAtributos: TDataSource;
     cdsUnidadesCompetencias: TClientDataSet;
     dsUnidadesCompetencias: TDataSource;
-    cdsCiclosEscolaresdtsPlanes: TDataSetField;
-    cdsPlanesdtsPlaneacionesGenerales: TDataSetField;
     cdsPlaneacionesGeneralesdtsPlaneacionesUnidades: TDataSetField;
     cdsPlaneacionesUnidadesESTRATEGIAS_DIDACTICAS: TMemoField;
     cdsPlaneacionesUnidadesSABERES_CONCEPTUALES: TMemoField;
@@ -200,6 +196,10 @@ type
     cdsPlaneacionesClasesCOMPETENCIAS_DISCIPLINARES: TMemoField;
     cdsAtributosCompetenciasID: TStringField;
     cdsAtributosCompetenciasNOMBRE: TStringField;
+    frxReport: TfrxReport;
+    cdsUnidadesRegionalesdtsUnidadesAcademicas: TDataSetField;
+    cdsCiclosEscolaresdtsPlanes: TDataSetField;
+    cdsPlaneacionesGeneralesID_SECRETARIO_ACTA: TStringField;
     procedure DataModuleCreate(Sender: TObject);
     procedure cdsUnidadesAcademicasNewRecord(DataSet: TDataSet);
     procedure cdsPlanesNewRecord(DataSet: TDataSet);
@@ -224,11 +224,14 @@ type
     procedure cdsAcuerdosAfterInsert(DataSet: TDataSet);
     procedure cdsUnidadesAtributosNewRecord(DataSet: TDataSet);
     procedure cdsUnidadesCompetenciasNewRecord(DataSet: TDataSet);
+    procedure cdsEvaluacionesAfterInsert(DataSet: TDataSet);
+    procedure cdsPlaneacionesClasesAfterInsert(DataSet: TDataSet);
   private
     { Private declarations }
    function GetId: String;
   public
     { Public declarations }
+    procedure Login;
   end;
 
 var
@@ -248,6 +251,22 @@ var
 begin
   CreateGuid(Guid);
   Exit(GuidToString(Guid))
+end;
+
+procedure TdmData.Login;
+begin
+  cdsPlaneacionesGenerales.Close;
+  cdsPlaneacionesGenerales.ParamByName('ID_PLAN').Value:=
+    cdsPlanesID_PLAN.Value;
+  cdsPlaneacionesGenerales.ParamByName('ID_SECRETARIO_ACTA').Value:=
+    cdsEmpleadosID.Value;
+  cdsPlaneacionesGenerales.Open;
+  if cdsPlaneacionesGenerales.IsEmpty then
+  begin
+    cdsPlaneacionesGenerales.Close;
+    cdsPlaneacionesGenerales.ParamByName('ID_SECRETARIO_ACTA').Value:= EmptyStr;
+    cdsPlaneacionesGenerales.Open;
+  end;
 end;
 
 procedure TdmData.cdsAcuerdosAfterInsert(DataSet: TDataSet);
@@ -272,12 +291,17 @@ end;
 
 procedure TdmData.cdsCiclosEscolaresNewRecord(DataSet: TDataSet);
 begin
-  cdsCiclosEscolares.FieldByName('ID').Value:= GetId;
+  cdsCiclosEscolares.FieldByName('ID_CICLO_ESCOLAR').Value:= GetId;
 end;
 
 procedure TdmData.cdsComponentesCurricularesNewRecord(DataSet: TDataSet);
 begin
   cdsComponentesCurriculares.FieldByName('ID').Value:= GetId;
+end;
+
+procedure TdmData.cdsEvaluacionesAfterInsert(DataSet: TDataSet);
+begin
+  cdsEvaluacionesFECHA.Value:= Now;
 end;
 
 procedure TdmData.cdsEvaluacionesNewRecord(DataSet: TDataSet);
@@ -300,6 +324,11 @@ begin
   cdsModalidades.FieldByName('ID').Value:= GetId;
 end;
 
+procedure TdmData.cdsPlaneacionesClasesAfterInsert(DataSet: TDataSet);
+begin
+  cdsPlaneacionesClasesFECHA.Value:= Now;
+end;
+
 procedure TdmData.cdsPlaneacionesClasesNewRecord(DataSet: TDataSet);
 begin
   cdsPlaneacionesClases.FieldByName('ID_PLANEACION_CLASE').Value:= GetId;
@@ -307,9 +336,11 @@ end;
 
 procedure TdmData.cdsPlaneacionesGeneralesAfterInsert(DataSet: TDataSet);
 begin
+  cdsPlaneacionesGeneralesID_PLAN.Value:= cdsPlanesID_PLAN.Value;
   cdsPlaneacionesGeneralesFECHA_INICIO.Value:= Now;
   cdsPlaneacionesGeneralesFECHA_CIERRE.Value:= Now;
   cdsPlaneacionesGeneralesFECHA.Value:= Now;
+  cdsPlaneacionesGeneralesID_SECRETARIO_ACTA.Value:= EmptyStr;
 end;
 
 procedure TdmData.cdsPlaneacionesGeneralesNewRecord(DataSet: TDataSet);
@@ -324,7 +355,7 @@ end;
 
 procedure TdmData.cdsPlanesNewRecord(DataSet: TDataSet);
 begin
-  cdsPlanes.FieldByName('ID').Value:= GetId;
+  cdsPlanes.FieldByName('ID_PLAN').Value:= GetId;
 end;
 
 procedure TdmData.cdsEmpleadosNewRecord(DataSet: TDataSet);
@@ -369,6 +400,7 @@ end;
 
 procedure TdmData.DataModuleCreate(Sender: TObject);
 begin
+
   try
     //Catalogos
     cdsModalidades.Open;

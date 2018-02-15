@@ -19,7 +19,6 @@ object dmData: TdmData
       'port=8080'
       'Filters={}'
       'CommunicationProtocol=http')
-    Connected = True
     Left = 48
     Top = 8
   end
@@ -107,6 +106,7 @@ object dmData: TdmData
     Aggregates = <>
     DataSetField = cdsPlaneacionesUnidadesdtsPlaneacionesClases
     Params = <>
+    AfterInsert = cdsPlaneacionesClasesAfterInsert
     OnNewRecord = cdsPlaneacionesClasesNewRecord
     Left = 1240
     Top = 152
@@ -132,62 +132,50 @@ object dmData: TdmData
     object cdsPlaneacionesClasesCONTENIDO_TEMATICO: TMemoField
       FieldName = 'CONTENIDO_TEMATICO'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesPROPOSITO_SESION: TMemoField
       FieldName = 'PROPOSITO_SESION'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesCOMPETENCIAS_GENERICAS: TMemoField
       FieldName = 'COMPETENCIAS_GENERICAS'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesCOMPETENCIAS_DISCIPLINARES: TMemoField
       FieldName = 'COMPETENCIAS_DISCIPLINARES'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesSABERES_CONCEPTUALES: TMemoField
       FieldName = 'SABERES_CONCEPTUALES'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesSABERES_PROCEDIMENTALES: TMemoField
       FieldName = 'SABERES_PROCEDIMENTALES'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesSABERES_ACTITUDINALES: TMemoField
       FieldName = 'SABERES_ACTITUDINALES'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesACTIVIDAD_APERTURA: TMemoField
       FieldName = 'ACTIVIDAD_APERTURA'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesACTIVIDAD_DESARROLLO: TMemoField
       FieldName = 'ACTIVIDAD_DESARROLLO'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesACTIVIDAD_CIERRE: TMemoField
       FieldName = 'ACTIVIDAD_CIERRE'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesRECURSOS_MATERIALES: TMemoField
       FieldName = 'RECURSOS_MATERIALES'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesClasesOBSERVACIONES_COMENTARIOS: TMemoField
       FieldName = 'OBSERVACIONES_COMENTARIOS'
       BlobType = ftMemo
-      Size = 1
     end
   end
   object RzFrameController1: TRzFrameController
@@ -207,7 +195,6 @@ object dmData: TdmData
   end
   object dpcData: TDSProviderConnection
     ServerClassName = 'TsrvMethods'
-    Connected = True
     SQLConnection = cntData
     Left = 152
     Top = 8
@@ -261,14 +248,13 @@ object dmData: TdmData
     end
     object cdsUnidadesRegionalesNOMBRE: TStringField
       FieldName = 'NOMBRE'
-      Size = 10
+      Size = 30
     end
     object cdsUnidadesRegionalesdtsUnidadesAcademicas: TDataSetField
       FieldName = 'dtsUnidadesAcademicas'
     end
   end
   object cdsEmpleados: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspEmpleados'
@@ -303,10 +289,10 @@ object dmData: TdmData
     end
   end
   object cdsLineasDisciplinares: TClientDataSet
-    Active = True
     Aggregates = <>
-    DataSetField = cdsAreasCurricularesdtsLineasDisciplinares
     Params = <>
+    ProviderName = 'dspLineasDisciplinares'
+    RemoteServer = dpcData
     AfterPost = cdsAfterPost
     AfterDelete = cdsAfterPost
     OnNewRecord = cdsLineasDisciplinaresNewRecord
@@ -324,7 +310,6 @@ object dmData: TdmData
     end
   end
   object cdsAreasCurriculares: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspAreasCurriculares'
@@ -344,12 +329,8 @@ object dmData: TdmData
       FieldName = 'NOMBRE'
       Size = 30
     end
-    object cdsAreasCurricularesdtsLineasDisciplinares: TDataSetField
-      FieldName = 'dtsLineasDisciplinares'
-    end
   end
   object cdsComponentesCurriculares: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspComponentesCurriculares'
@@ -371,7 +352,6 @@ object dmData: TdmData
     end
   end
   object cdsSecretariosAcademicos: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspSecretariosAcademicos'
@@ -393,7 +373,6 @@ object dmData: TdmData
     end
   end
   object cdsCiclosEscolares: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <
       item
@@ -436,7 +415,6 @@ object dmData: TdmData
     end
   end
   object cdsModalidades: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspModalidades'
@@ -458,7 +436,6 @@ object dmData: TdmData
     end
   end
   object cdsPlanes: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsCiclosEscolaresdtsPlanes
     Params = <>
@@ -479,9 +456,6 @@ object dmData: TdmData
       FieldName = 'ID_CICLO_ESCOLAR'
       Required = True
       Size = 38
-    end
-    object cdsPlanesdtsPlaneacionesGenerales: TDataSetField
-      FieldName = 'dtsPlaneacionesGenerales'
     end
   end
   object cdsUnidadesAcademicas: TClientDataSet
@@ -508,11 +482,25 @@ object dmData: TdmData
     end
   end
   object cdsPlaneacionesGenerales: TClientDataSet
-    Active = True
     Aggregates = <>
-    DataSetField = cdsPlanesdtsPlaneacionesGenerales
-    Params = <>
+    Params = <
+      item
+        DataType = ftString
+        Name = 'ID_PLAN'
+        ParamType = ptInput
+        Size = 38
+      end
+      item
+        DataType = ftString
+        Name = 'ID_SECRETARIO_ACTA'
+        ParamType = ptInput
+        Size = 38
+      end>
+    ProviderName = 'dspPlaneacionesGenerales'
+    RemoteServer = dpcData
     AfterInsert = cdsPlaneacionesGeneralesAfterInsert
+    AfterPost = cdsAfterPost
+    AfterDelete = cdsAfterPost
     OnNewRecord = cdsPlaneacionesGeneralesNewRecord
     Left = 336
     Top = 152
@@ -552,7 +540,6 @@ object dmData: TdmData
     object cdsPlaneacionesGeneralesPROPOSITO_GENERAL: TMemoField
       FieldName = 'PROPOSITO_GENERAL'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesGeneralesEVIDENCIA_INTEGRADORA: TStringField
       FieldName = 'EVIDENCIA_INTEGRADORA'
@@ -561,7 +548,6 @@ object dmData: TdmData
     object cdsPlaneacionesGeneralesORIENTACIONES_GENERALES: TMemoField
       FieldName = 'ORIENTACIONES_GENERALES'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesGeneralesID_PLAN: TStringField
       FieldName = 'ID_PLAN'
@@ -569,6 +555,11 @@ object dmData: TdmData
     end
     object cdsPlaneacionesGeneralesID_MODALIDAD: TStringField
       FieldName = 'ID_MODALIDAD'
+      Size = 38
+    end
+    object cdsPlaneacionesGeneralesID_SECRETARIO_ACTA: TStringField
+      FieldName = 'ID_SECRETARIO_ACTA'
+      Origin = 'ID_SECRETARIO_ACTA'
       Size = 38
     end
     object cdsPlaneacionesGeneralesID_PROFESOR_COORDINADOR: TStringField
@@ -665,7 +656,6 @@ object dmData: TdmData
     end
   end
   object cdsProfesoresParticipantes: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesGeneralesdtsProfesoresParticipantes
     Params = <>
@@ -702,7 +692,6 @@ object dmData: TdmData
     end
   end
   object cdsReuniones: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesGeneralesdtsReuniones
     Params = <>
@@ -728,14 +717,12 @@ object dmData: TdmData
     object cdsReunionesPROPOSITO: TMemoField
       FieldName = 'PROPOSITO'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsReunionesFECHA: TDateField
       FieldName = 'FECHA'
     end
   end
   object cdsAcuerdos: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesGeneralesdtsAcuerdos
     Params = <>
@@ -761,7 +748,6 @@ object dmData: TdmData
     object cdsAcuerdosACUERDO: TMemoField
       FieldName = 'ACUERDO'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsAcuerdosPARA: TStringField
       FieldName = 'PARA'
@@ -770,14 +756,12 @@ object dmData: TdmData
     object cdsAcuerdosSEGUIMIENTO: TMemoField
       FieldName = 'SEGUIMIENTO'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsAcuerdosFECHA: TDateField
       FieldName = 'FECHA'
     end
   end
   object cdsPlaneacionesUnidades: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesGeneralesdtsPlaneacionesUnidades
     Params = <>
@@ -801,17 +785,14 @@ object dmData: TdmData
     object cdsPlaneacionesUnidadesPROPOSITO_UNIDAD: TMemoField
       FieldName = 'PROPOSITO_UNIDAD'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesUnidadesRECURSOS: TMemoField
       FieldName = 'RECURSOS'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesUnidadesESTRATEGIAS_RETROALIMENTACION: TMemoField
       FieldName = 'ESTRATEGIAS_RETROALIMENTACION'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesUnidadesHORAS: TSmallintField
       FieldName = 'HORAS'
@@ -819,27 +800,22 @@ object dmData: TdmData
     object cdsPlaneacionesUnidadesESTRATEGIAS_DIDACTICAS: TMemoField
       FieldName = 'ESTRATEGIAS_DIDACTICAS'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesUnidadesSABERES_CONCEPTUALES: TMemoField
       FieldName = 'SABERES_CONCEPTUALES'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesUnidadesSABERES_PROCEDIMENTALES: TMemoField
       FieldName = 'SABERES_PROCEDIMENTALES'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesUnidadesSABERES_ACTITUDINALES: TMemoField
       FieldName = 'SABERES_ACTITUDINALES'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesUnidadesCONTENIDO_TEMATICO: TMemoField
       FieldName = 'CONTENIDO_TEMATICO'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsPlaneacionesUnidadesdtsUnidadesCompetencias: TDataSetField
       FieldName = 'dtsUnidadesCompetencias'
@@ -855,10 +831,10 @@ object dmData: TdmData
     end
   end
   object cdsEvaluaciones: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesUnidadesdtsEvaluaciones
     Params = <>
+    AfterInsert = cdsEvaluacionesAfterInsert
     OnNewRecord = cdsEvaluacionesNewRecord
     Left = 1136
     Top = 152
@@ -880,7 +856,6 @@ object dmData: TdmData
     object cdsEvaluacionesEVIDENCIA: TMemoField
       FieldName = 'EVIDENCIA'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsEvaluacionesPONDERACION: TSmallintField
       FieldName = 'PONDERACION'
@@ -899,7 +874,6 @@ object dmData: TdmData
     Top = 104
   end
   object cdsPerfiles: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspPerfiles'
@@ -926,7 +900,6 @@ object dmData: TdmData
     Top = 104
   end
   object cdsProfesores: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspEmpleados'
@@ -961,7 +934,6 @@ object dmData: TdmData
     end
   end
   object cdsUnidadesAtributos: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesUnidadesdtsUnidadesAtributos
     Params = <>
@@ -985,7 +957,6 @@ object dmData: TdmData
     object cdsUnidadesAtributosCRITERIOS_APRENDIZAJE: TMemoField
       FieldName = 'CRITERIOS_APRENDIZAJE'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsUnidadesAtributosATRIBUTO: TStringField
       FieldKind = fkLookup
@@ -1003,7 +974,6 @@ object dmData: TdmData
     Top = 200
   end
   object cdsUnidadesCompetencias: TClientDataSet
-    Active = True
     Aggregates = <>
     DataSetField = cdsPlaneacionesUnidadesdtsUnidadesCompetencias
     Params = <>
@@ -1027,7 +997,6 @@ object dmData: TdmData
     object cdsUnidadesCompetenciasCRITERIOS_APRENDIZAJE: TMemoField
       FieldName = 'CRITERIOS_APRENDIZAJE'
       BlobType = ftMemo
-      Size = 1
     end
     object cdsUnidadesCompetenciasCOMPETENCIA_DISCIPLINAR: TStringField
       FieldKind = fkLookup
@@ -1050,7 +1019,6 @@ object dmData: TdmData
     Top = 104
   end
   object cdsAtributosCompetencias: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspAtributosCompetencias'
@@ -1082,7 +1050,6 @@ object dmData: TdmData
     Top = 104
   end
   object cdsCompetenciasDisciplinares: TClientDataSet
-    Active = True
     Aggregates = <>
     Params = <>
     ProviderName = 'dspCompetenciasDisciplinares'
@@ -1101,6 +1068,40 @@ object dmData: TdmData
     object cdsCompetenciasDisciplinaresNOMBRE: TStringField
       FieldName = 'NOMBRE'
       Size = 250
+    end
+  end
+  object frxReport: TfrxReport
+    Version = '5.3.14'
+    DotMatrixReport = False
+    IniFile = '\Software\Fast Reports'
+    PreviewOptions.Buttons = [pbPrint, pbLoad, pbSave, pbExport, pbZoom, pbFind, pbOutline, pbPageSetup, pbTools, pbEdit, pbNavigator, pbExportQuick]
+    PreviewOptions.Zoom = 1.000000000000000000
+    PrintOptions.Printer = 'Default'
+    PrintOptions.PrintOnSheet = 0
+    ReportOptions.CreateDate = 43110.431553668990000000
+    ReportOptions.LastChange = 43110.431553668990000000
+    ScriptLanguage = 'PascalScript'
+    ScriptText.Strings = (
+      'begin'
+      ''
+      'end.')
+    Left = 450
+    Top = 8
+    Datasets = <>
+    Variables = <>
+    Style = <>
+    object Data: TfrxDataPage
+      Height = 1000.000000000000000000
+      Width = 1000.000000000000000000
+    end
+    object Page1: TfrxReportPage
+      PaperWidth = 215.900000000000000000
+      PaperHeight = 279.400000000000000000
+      PaperSize = 1
+      LeftMargin = 10.000000000000000000
+      RightMargin = 10.000000000000000000
+      TopMargin = 10.000000000000000000
+      BottomMargin = 10.000000000000000000
     end
   end
 end

@@ -5,37 +5,40 @@ interface
 uses System.SysUtils, System.Classes, System.Json,
     DataSnap.DSProviderDataModuleAdapter,
     Datasnap.DSServer, Datasnap.DSAuth, Data.DBXFirebird, Data.FMTBcd, Data.DB,
-  Data.SqlExpr, Datasnap.Provider;
+  Data.SqlExpr, Datasnap.Provider, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, FireDAC.UI.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Phys, FireDAC.Phys.FB,
+  FireDAC.Phys.FBDef, FireDAC.VCLUI.Wait, FireDAC.Comp.Client,
+  FireDAC.Comp.DataSet;
 
 type
   TsrvMethods = class(TDSServerModule)
-    cntData: TSQLConnection;
     dspEmpleados: TDataSetProvider;
-    dtsEmpleados: TSQLDataSet;
-    dtsLineasDisciplinares: TSQLDataSet;
+    dtsEmpleados: TFDQuery;
+    dtsLineasDisciplinares: TFDQuery;
     dspAreasCurriculares: TDataSetProvider;
-    dtsAreasCurriculares: TSQLDataSet;
+    dtsAreasCurriculares: TFDQuery;
     dspComponentesCurriculares: TDataSetProvider;
-    dtsComponentesCurriculares: TSQLDataSet;
+    dtsComponentesCurriculares: TFDQuery;
     dspSecretariosAcademicos: TDataSetProvider;
-    dtsSecretariosAcademicos: TSQLDataSet;
+    dtsSecretariosAcademicos: TFDQuery;
     dspModalidades: TDataSetProvider;
-    dtsModalidades: TSQLDataSet;
-    dtsPlanes: TSQLDataSet;
-    dtsUnidadesAcademicas: TSQLDataSet;
-    dtsPlaneacionesGenerales: TSQLDataSet;
-    dtsProfesoresParticipantes: TSQLDataSet;
+    dtsModalidades: TFDQuery;
+    dtsPlanes: TFDQuery;
+    dtsUnidadesAcademicas: TFDQuery;
+    dtsPlaneacionesGenerales: TFDQuery;
+    dtsProfesoresParticipantes: TFDQuery;
     dsPlaneacionesGenerales: TDataSource;
-    dtsPlaneacionesClases: TSQLDataSet;
+    dtsPlaneacionesClases: TFDQuery;
     dsPlaneacionesUnidades: TDataSource;
-    dtsEvaluaciones: TSQLDataSet;
-    dtsPlaneacionesUnidades: TSQLDataSet;
-    dtsAcuerdos: TSQLDataSet;
-    dtsReuniones: TSQLDataSet;
+    dtsEvaluaciones: TFDQuery;
+    dtsPlaneacionesUnidades: TFDQuery;
+    dtsAcuerdos: TFDQuery;
+    dtsReuniones: TFDQuery;
     dspInstrumentosEvaluacion: TDataSetProvider;
-    dsPlanes: TDataSource;
     dspUnidadesRegionales: TDataSetProvider;
-    dtsUnidadesRegionales: TSQLDataSet;
+    dtsUnidadesRegionales: TFDQuery;
     dsUnidadesRegionales: TDataSource;
     dsCiclosEscolares: TDataSource;
     dtsUnidadesRegionalesID_UNIDAD_REGIONAL: TStringField;
@@ -74,11 +77,11 @@ type
     dtsLineasDisciplinaresNOMBRE: TStringField;
     dtsEmpleadosID: TStringField;
     dtsEmpleadosNOMBRE: TStringField;
-    dtsInstrumentosEvaluacion: TSQLDataSet;
+    dtsInstrumentosEvaluacion: TFDQuery;
     dtsInstrumentosEvaluacionID: TStringField;
     dtsInstrumentosEvaluacionNOMBRE: TStringField;
     dspCiclosEscolares: TDataSetProvider;
-    dtsCiclosEscolares: TSQLDataSet;
+    dtsCiclosEscolares: TFDQuery;
     dtsCiclosEscolaresID_CICLO_ESCOLAR: TStringField;
     dtsCiclosEscolaresNOMBRE: TStringField;
     dtsCiclosEscolaresID_UNIDAD_REGIONAL: TStringField;
@@ -130,15 +133,14 @@ type
     dtsPlaneacionesClasesRECURSOS_MATERIALES: TMemoField;
     dtsPlaneacionesClasesOBSERVACIONES_COMENTARIOS: TMemoField;
     dtsAreasCurricularesID_AREA_CURRICULAR: TStringField;
-    dsAreasCurriculares: TDataSource;
     dsPlaneacionesClases: TDataSource;
     dspPerfiles: TDataSetProvider;
-    dtsPerfiles: TSQLDataSet;
+    dtsPerfiles: TFDQuery;
     StringField1: TStringField;
     StringField2: TStringField;
     dtsEmpleadosID_PERFIL: TStringField;
     dspProfesores: TDataSetProvider;
-    dtsProfesores: TSQLDataSet;
+    dtsProfesores: TFDQuery;
     StringField3: TStringField;
     StringField4: TStringField;
     StringField5: TStringField;
@@ -148,8 +150,8 @@ type
     dtsPlaneacionesUnidadesSABERES_PROCEDIMENTALES: TMemoField;
     dtsPlaneacionesUnidadesSABERES_ACTITUDINALES: TMemoField;
     dtsPlaneacionesUnidadesCONTENIDO_TEMATICO: TMemoField;
-    dtsUnidadesAtributos: TSQLDataSet;
-    dtsUnidadesCompetencias: TSQLDataSet;
+    dtsUnidadesAtributos: TFDQuery;
+    dtsUnidadesCompetencias: TFDQuery;
     dtsUnidadesAtributosID_UNIDAD_ATRIBUTO: TStringField;
     dtsUnidadesAtributosID_PLANEACION_UNIDAD: TStringField;
     dtsUnidadesAtributosID_ATRIBUTO_COMPETENCIA: TStringField;
@@ -159,16 +161,20 @@ type
     dtsUnidadesCompetenciasID_COMPETENCIA_DISCIPLINAR: TStringField;
     dtsUnidadesCompetenciasCRITERIOS_APRENDIZAJE: TMemoField;
     dspAtributosCompetencias: TDataSetProvider;
-    dtsAtributosCompetencias: TSQLDataSet;
+    dtsAtributosCompetencias: TFDQuery;
     dtsAtributosCompetenciasID: TStringField;
     dtsAtributosCompetenciasNOMBRE: TStringField;
     dtsAtributosCompetenciasID_COMPETENCIA_GENERICA: TStringField;
     dspCompetenciasDisciplinares: TDataSetProvider;
-    dtsCompetenciasDisciplinares: TSQLDataSet;
+    dtsCompetenciasDisciplinares: TFDQuery;
     dtsCompetenciasDisciplinaresID_COMPETENCIA_DISCIPLINAR: TStringField;
     dtsCompetenciasDisciplinaresNOMBRE: TStringField;
     dtsPlaneacionesClasesCOMPETENCIAS_GENERICAS: TMemoField;
     dtsPlaneacionesClasesCOMPETENCIAS_DISCIPLINARES: TMemoField;
+    cntData: TFDConnection;
+    dtsPlaneacionesGeneralesID_SECRETARIO_ACTA: TStringField;
+    dspPlaneacionesGenerales: TDataSetProvider;
+    dspLineasDisciplinares: TDataSetProvider;
   private
     { Private declarations }
   public

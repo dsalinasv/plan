@@ -19,8 +19,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
     Top = 693
     Width = 1008
     TabOrder = 0
-    ExplicitTop = 488
-    ExplicitWidth = 836
   end
   object RzPanel8: TRzPanel
     Left = 0
@@ -29,38 +27,30 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
     Height = 693
     Align = alClient
     TabOrder = 1
-    ExplicitWidth = 836
-    ExplicitHeight = 488
     object pgPlaneacion: TRzPageControl
       Left = 2
       Top = 2
       Width = 1004
       Height = 689
       Hint = ''
-      ActivePage = TabSheet6
+      ActivePage = TabSheet1
       ActivePageDefault = TabSheet1
       Align = alClient
-      TabIndex = 1
+      TabIndex = 0
       TabOrder = 0
-      ExplicitWidth = 832
-      ExplicitHeight = 484
       FixedDimension = 19
       object TabSheet1: TRzTabSheet
         Caption = 'Planeaci'#243'n de clase'
-        ExplicitWidth = 828
-        ExplicitHeight = 461
         DesignSize = (
           1000
           666)
         object RzLabel24: TRzLabel
           Left = 16
           Top = 544
-          Width = 276
+          Width = 104
           Height = 13
           Anchors = [akLeft, akRight, akBottom]
           Caption = 'Prop'#243'sito de la sesi'#243'n'
-          ExplicitTop = 339
-          ExplicitWidth = 104
         end
         object RzLabel3: TRzLabel
           Left = 370
@@ -106,8 +96,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
-          ExplicitTop = 358
-          ExplicitWidth = 761
         end
         object dbmContenido: TRzDBMemo
           Left = 16
@@ -125,8 +113,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
-          ExplicitWidth = 761
-          ExplicitHeight = 259
         end
         object RzDBDateTimePicker1: TRzDBDateTimePicker
           Left = 405
@@ -178,10 +164,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
       end
       object TabSheet6: TRzTabSheet
         Caption = 'Competencias'
-        ExplicitLeft = 0
-        ExplicitTop = 0
-        ExplicitWidth = 0
-        ExplicitHeight = 0
         DesignSize = (
           1000
           666)
@@ -250,10 +232,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
       end
       object TabSheet2: TRzTabSheet
         Caption = 'Saberes espec'#237'ficos a desarrollar'
-        ExplicitLeft = 2
-        ExplicitTop = 19
-        ExplicitWidth = 828
-        ExplicitHeight = 461
         DesignSize = (
           1000
           666)
@@ -294,7 +272,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
-          ExplicitWidth = 761
         end
         object dbmProcedimentales: TRzDBMemo
           Left = 16
@@ -312,7 +289,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
-          ExplicitWidth = 761
         end
         object dbmActitudinales: TRzDBMemo
           Left = 16
@@ -330,7 +306,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
-          ExplicitWidth = 761
         end
         object RzButton2: TRzButton
           Left = 87
@@ -356,8 +331,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
       end
       object TabSheet3: TRzTabSheet
         Caption = 'Desarrollo did'#225'ctico'
-        ExplicitWidth = 828
-        ExplicitHeight = 461
         DesignSize = (
           1000
           666)
@@ -398,7 +371,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
-          ExplicitWidth = 761
         end
         object RzDBMemo4: TRzDBMemo
           Left = 16
@@ -416,7 +388,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
-          ExplicitWidth = 761
         end
         object RzDBMemo5: TRzDBMemo
           Left = 16
@@ -434,13 +405,10 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
-          ExplicitWidth = 761
         end
       end
       object TabSheet4: TRzTabSheet
         Caption = 'Materiales/medios/recursos did'#225'cticos'
-        ExplicitWidth = 828
-        ExplicitHeight = 461
         object RzDBMemo9: TRzDBMemo
           Left = 0
           Top = 0
@@ -457,15 +425,10 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
-          ExplicitTop = -1
-          ExplicitWidth = 828
-          ExplicitHeight = 461
         end
       end
       object TabSheet5: TRzTabSheet
         Caption = 'Comentarios/Observaciones'
-        ExplicitWidth = 828
-        ExplicitHeight = 461
         object RzDBMemo10: TRzDBMemo
           Left = 0
           Top = 0
@@ -482,8 +445,6 @@ object frmPlaneacionesClases: TfrmPlaneacionesClases
           FrameSides = [sdLeft, sdBottom]
           FrameVisible = True
           FramingPreference = fpCustomFraming
-          ExplicitWidth = 828
-          ExplicitHeight = 461
         end
       end
     end

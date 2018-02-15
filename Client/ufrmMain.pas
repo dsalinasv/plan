@@ -168,17 +168,20 @@ type
     RzDBNavigator10: TRzDBNavigator;
     RzLabel39: TRzLabel;
     RzLabel40: TRzLabel;
+    RzLabel41: TRzLabel;
     procedure actExecute(Sender: TObject);
     procedure RzSizePanel1HotSpotClick(Sender: TObject);
     procedure RzSizePanel4HotSpotClick(Sender: TObject);
     procedure RzDBGrid4DblClick(Sender: TObject);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure DBGrid7DblClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
     { Public declarations }
+    Perfil: Integer;
+    procedure ActivarControles;
   end;
 
 var
@@ -189,7 +192,7 @@ implementation
 {$R *.dfm}
 
 uses
-  udmData, ufrmPlaneacionesClases;
+  udmData, ufrmPlaneacionesClases, ufrmLogin;
 
 procedure TfrmMain.actExecute(Sender: TObject);
 var
@@ -207,10 +210,29 @@ begin
     end;
 end;
 
+procedure TfrmMain.ActivarControles;
+var
+  i: Integer;
+begin
+  for i := 0 to Pred(ComponentCount) do
+  begin
+    if (Components[i] is TRzComboBox) or
+       (Components[i] is TRzDBGrid) or
+       (Components[i] is TRzDBEdit) or
+       (Components[i] is TRzDBLookupComboBox) or
+       (Components[i] is TRzDBDateTimePicker) or
+       (Components[i] is TRzDBMemo) or
+       (Components[i] is TRzGroupBar) or
+       (Components[i] is TRzDBNavigator) then
+      (Components[i] as TWinControl).Enabled:= Components[i].Tag >= Perfil;
+  end;
+end;
+
 procedure TfrmMain.DBGrid7DblClick(Sender: TObject);
 begin
   with TfrmPlaneacionesClases.Create(Self) do
     try
+      ActivarControles(Perfil);
       if ShowModal = mrOk then
         if dmData.cdsPlaneacionesClases.State in dsEditModes then
           dmData.cdsPlaneacionesClases.Post
@@ -221,10 +243,21 @@ begin
     end;
 end;
 
-procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+procedure TfrmMain.FormClose(Sender: TObject; var Action: TCloseAction);
+var
+  Res: Integer;
 begin
   if dmData.cdsPlaneacionesGenerales.State in dsEditModes then
-    dmData.cdsPlaneacionesGenerales.ApplyUpdates(0);
+  begin
+    Res:= MessageBox(0, '¿Desea subir los cambios al servidor?',
+      'Advertencia', MB_ICONINFORMATION or MB_YESNO);
+    case Res of
+      IDYES: dmData.cdsPlaneacionesGenerales.ApplyUpdates(0);
+      IDNO: dmData.cdsPlaneacionesGenerales.CancelUpdates;
+    end
+  end;
+  //dmData.cdsPlaneacionesGenerales.ApplyUpdates(0);
+  frmLogin.Show;
 end;
 
 procedure TfrmMain.FormShow(Sender: TObject);
