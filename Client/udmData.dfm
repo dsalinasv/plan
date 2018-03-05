@@ -15,7 +15,7 @@ object dmData: TdmData
         '.Data.DbxClientDriver,Version=24.0.0.0,Culture=neutral,PublicKey' +
         'Token=91d62ebb5b0d1b1b'
       'DriverName=DataSnap'
-      'HostName=profesalinas.redirectme.net'
+      'HostName=localhost'
       'port=8080'
       'Filters={}'
       'CommunicationProtocol=http')
