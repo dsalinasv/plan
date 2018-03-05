@@ -945,7 +945,7 @@ object srvMethods: TsrvMethods
     Params.Strings = (
       'Database=C:\AppData\PLAN.FDB'
       'User_Name=sysdba'
-      'Password=auofdsbcs'
+      'Password=masterkey'
       'DriverID=FB')
     LoginPrompt = False
     Left = 48
